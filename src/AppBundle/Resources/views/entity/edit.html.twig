@@ -1,0 +1,36 @@
+{% extends 'AppBundle::base.html.twig' %} 
+{% block body %}
+{% for flash_message in app.session.flashBag.get('notice') %}
+<div class="alert alert-dismissible alert-success" style="display:inline-block">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+{{ flash_message }}
+</div>
+{% endfor %} 
+<h3>
+{{ 'post_details'|trans }} ({{ id }})
+</h3>
+{{ form_start(form) }}
+<button type="button" class="btn btn-default" data-dismiss="cancel">{{ 'btn_cancel'|trans }}</button>
+<button type="submit" class="btn btn-primary">{{ 'btn_save'|trans }}</button>
+<table>
+{{ form_errors(form) }}
+{% for field in fields %}
+<tr>
+<td>{{ form_label(form[field]) }}</td>
+<td>{{ form_widget(form[field]) }}</td>
+<td>{{ form_errors(form[field]) }}</td>
+</tr>
+{% endfor %}
+</table>
+<button type="button" class="btn btn-default" data-dismiss="cancel">{{ 'btn_cancel'|trans }}</button>
+<button type="submit" class="btn btn-primary">{{ 'btn_save'|trans }}</button>
+{{ form_end(form) }}
+{% block javascript %}
+<script type="text/javascript">
+(function($){
+	$('*[data-dismiss="cancel"]').bind('click',function(){location.href="/{{ app.request.locale }}/entity/browse/{{ entity }}";});
+	$("#{{ form_id }} table td:last-child:not(:empty):first").each(function(index,value){$('html,body').animate({scrollTop:$(value).offset().top},500);});
+})(jQuery);
+</script>
+{% endblock %}
+{% endblock %}

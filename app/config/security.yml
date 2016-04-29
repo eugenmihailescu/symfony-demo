@@ -1,0 +1,39 @@
+security:
+  encoders:
+    Symfony\Component\Security\Core\User\User:
+      algorithm: bcrypt
+      cost: 13
+  providers:
+    in_memory:
+      memory:
+        users:
+          eugen:
+            password: $2y$12$uvxCZ8.M/ZjEVp74XECYbeh3z17AoTdlQjRspYZBUtl4b.dJ99Bwy
+            roles: ROLE_USER
+          admin:
+            password: $2y$12$aRjUR4jkEhsHdKwNyGWFCOm1v0f6Zsa46TSz1a8LAMGHjs6i5TuqW
+            roles: ROLE_ADMIN
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    default:
+      pattern: ^/
+      anonymous: ~
+      form_login:
+        check_path: security_login_check
+        login_path: security_login_form
+        username_parameter: _username
+        password_parameter: _password
+        csrf_parameter: _csrf_token
+        csrf_token_id: authenticate
+        csrf_token_generator: security.csrf.token_manager
+      remember_me:
+        name: login_remember_me_cookie
+        secret: '%secret%'
+        lifetime: 86400
+        remember_me_parameter: _remember_me
+        httponly: true
+      logout:
+        path: security_logout
+        target: homepage

@@ -1,0 +1,87 @@
+app:
+  resource: '@AppBundle/Controller/'
+  type: annotation
+  prefix: /{_locale}/
+  requirements:
+    _locale: '%app_locales%'
+  defaults:
+    _locale: '%locale%'
+homepage:
+  path: /{_locale}
+  requirements:
+    _locale: '%app_locales%'
+  defaults:
+    _controller: AppBundle:EntityList:browseEntities
+    _locale: '%locale%'
+    page: '%first_page%'
+    limit: '%recs_per_page%'
+entities_list:
+  path: /{_locale}/entities/{page}/{limit}
+  requirements:
+    _locale: '%app_locales%'
+    page: '[1-9]\d*'
+    limit: '[1-9]\d*'
+  defaults:
+    _locale: '%locale%'
+    _controller: AppBundle:EntityList:browseEntities
+    page: '%first_page%'
+    limit: '%recs_per_page%'
+browse_entity:
+  path: /{_locale}/entity/browse/{entity}/{page}/{limit}
+  requirements:
+    _locale: '%app_locales%'
+    page: '[1-9]\d*'
+    limit: '[1-9]\d*'
+    entity: '[a-zA-Z][\w\d$_]*'
+  defaults:
+    _locale: '%locale%'
+    _controller: AppBundle:GridView:browseEntities
+    page: '%first_page%'
+    limit: '%recs_per_page%'
+view_entity:
+  path: /{_locale}/entity/view/{entity}/{id}
+  requirements:
+    _locale: '%app_locales%'
+    entity: '[a-zA-Z][\w\d$_]*'
+    id: \d+
+  defaults:
+    _locale: '%locale%'
+    _controller: AppBundle:PanelView:previewEntity
+  methods:
+  - GET
+  - HEAD
+edit_entity:
+  path: /{_locale}/entity/edit/{entity}/{id}/{success}
+  requirements:
+    _locale: '%app_locales%'
+    entity: '[a-zA-Z][\w\d$_]*'
+    id: \d+
+  defaults:
+    _locale: '%locale%'
+    _controller: AppBundle:EditView:editEntity
+    success: null
+    id: -1
+  methods:
+  - GET
+  - HEAD
+  - POST
+delete_entity:
+  path: /{_locale}/entity/delete/{entity}/{id}
+  requirements:
+    _locale: '%app_locales%'
+    entity: '[a-zA-Z][\w\d$_]*'
+    id: \d+
+  defaults:
+    _locale: '%locale%'
+    _controller: AppBundle:Generic:deleteEntity
+  methods:
+  - GET
+  - HEAD
+  - POST
+pageNotFound:
+  path: /{path}
+  defaults:
+    _controller: AppBundle:PageNotFound:pageNotFound
+    path: ''
+  requirements:
+    path: .*

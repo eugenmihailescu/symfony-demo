@@ -1,0 +1,30 @@
+{% include 'AppBundle::pagenav_limit.html.twig' %}
+{# some `data` are zero-indexed, some aren't #}
+{% set nzero_indexed=(data[0]|keys)[0]>0?1:0 %}
+<div class="panel panel-default">
+  <div class="panel-body">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				{# print-out the grid header columns #}
+				{% for column in columns %}
+				<th>{{ column }}</th> {% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{# print-out the records ; we assume that all data[i] have the same number of items #}
+			{% for i in 0..data[0]|length-1 %}
+			<tr>
+				{% for column in columns|keys %}
+					{% set j=i+(page-1)*limit*nzero_indexed %}
+					<td>
+						<a href="/{{ app.request.locale }}{{ data_route }}/{{ data[0][j][0] }}">{{ data[column][j][1] }}</a>
+					</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table> 
+  </div>
+</div>
+{% include 'AppBundle::pagenav.html.twig' %}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="c3c65e8eecf902d257896d453aa83efc" resname="wptestsposts.poststatus.choice">
+        <source>wptestsposts.poststatus.choice</source>
+        <target>Choose a valid status</target>
+      </trans-unit>
+      <trans-unit id="fd399da0961af0062b31d9d21029a870" resname="wptestsposts.postType.choice">
+        <source>wptestsposts.postType.choice</source>
+        <target>Choose a valid post type</target>
+      </trans-unit>
+      <trans-unit id="b44faedf48df7d4b5fd391afab16ec8d" resname="wptestsposts.postparent.foreignkey">
+        <source>wptestsposts.postparent.foreignkey</source>
+        <target>Invalid parent post ID</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

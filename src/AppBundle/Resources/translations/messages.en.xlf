@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" target-language="en" datatype="plaintext"
+		original="file.ext">
+		<header>
+			<tool tool-id="symfony" tool-name="Symfony" />
+		</header>
+		<body>
+			<trans-unit id="7f86cc02647e5125414907d14baec970" resname="post_details">
+				<source>post_details</source>
+				<target>Details</target>
+			</trans-unit>
+			<trans-unit id="d8e8503d5aa37a5273e554d183675705" resname="btn_back">
+				<source>btn_back</source>
+				<target>Back</target>
+			</trans-unit>
+			<trans-unit id="036be21ce14ef324858b829b26f9cf76" resname="btn_edit">
+				<source>btn_edit</source>
+				<target>Edit</target>
+			</trans-unit>
+			<trans-unit id="55e41eae14040d579f471d891ede7918" resname="btn_delete">
+				<source>btn_delete</source>
+				<target>Delete</target>
+			</trans-unit>
+			<trans-unit id="15dfdcdfb58bbbbc667dbd7d48834804" resname="list_of_posts">
+				<source>list_of_posts</source>
+				<target>List</target>
+			</trans-unit>
+			<trans-unit id="bed0b2b8d0c9f5298f3add599c5e3452" resname="btn_save">
+				<source>btn_save</source>
+				<target>Save</target>
+			</trans-unit>
+			<trans-unit id="d36e0377de82a30f25681d2312e926ea" resname="post_saved">
+				<source>post_saved</source>
+				<target>Changes saved successfully</target>
+			</trans-unit>
+			<trans-unit id="b0458ea6ff42196b250ca7f4637ac6ee" resname="login_username">
+				<source>login_username</source>
+				<target>User name</target>
+			</trans-unit>
+			<trans-unit id="364de776ef33be2f50765c1ffa5f4e38" resname="login_password">
+				<source>login_password</source>
+				<target>Password</target>
+			</trans-unit>
+			<trans-unit id="b3e3ec57b4cda37e92afbfca5bb1adce" resname="keep_me_logged_in">
+				<source>keep_me_logged_in</source>
+				<target>Keep me logged in</target>
+			</trans-unit>
+			<trans-unit id="99dea78007133396a7b8ed70578ac6ae" resname="Login">
+				<source>Login</source>
+				<target>Login</target>
+			</trans-unit>
+			<trans-unit id="93c4f9293f239af6fe3db5c0d933c91e" resname="home_page">
+				<source>home_page</source>
+				<target>Home</target>
+			</trans-unit>
+			<trans-unit id="03900888223c2f0bf28f485c1165c4e9" resname="btn_cancel">
+				<source>btn_cancel</source>
+				<target>Cancel</target>
+			</trans-unit>
+			<trans-unit id="eb5603e3964a9803f2208fc29b3e349c" resname="confirm_dialog">
+				<source>confirm_dialog</source>
+				<target>Confirm</target>
+			</trans-unit>
+			<trans-unit id="07d502b014f24ede5c3bb3d0112a67f8" resname="confirm_delete_entry">
+				<source>confirm_delete_entry</source>
+				<target>Are you sure you want to delete this entry?</target>
+			</trans-unit>
+			<trans-unit id="bf4b06aff87a1583cca744c66c93b7e3" resname="btn_add">
+				<source>btn_add</source>
+				<target>Add new post</target>
+			</trans-unit>
+			<trans-unit id="e9744063b078083017a5c5f887d32291" resname="btn_shop_top">
+				<source>btn_shop_top</source>
+				<target>Apply</target>
+			</trans-unit>
+			<trans-unit id="df29261e816d5fd3622f44ed1248edaf" resname="show_prefix">
+				<source>show_prefix</source>
+				<target>Show</target>
+			</trans-unit>
+			<trans-unit id="959e6cf0a08acf95da28eed7d5f19726" resname="show_sufix">
+				<source>show_sufix</source>
+				<target>posts/page</target>
+			</trans-unit>
+			<trans-unit id="03566a59ac5e38ae6cc22bbe21e1e95a" resname="post_deleted">
+				<source>post_deleted</source>
+				<target>Post deleted successfully</target>
+			</trans-unit>
+			<trans-unit id="adde308c0c225548212c43a9bfe186b5" resname="list_of_entities">
+				<source>list_of_entities</source>
+				<target>List of entities</target>
+			</trans-unit>
+			<trans-unit id="858454f450fc6a88731518234915dc47" resname="entity_name">
+				<source>entity_name</source>
+				<target>Entity name</target>
+			</trans-unit>
+			<trans-unit id="0c2b685d7526be6fb46229c4fd82c99c" resname="footer.mit_license">
+				<source>footer.mit_license</source>
+				<target><![CDATA[Code released under the <a href="https://opensource.org/licenses/MIT">MIT license</a>]]></target>
+			</trans-unit>
+			<trans-unit id="footer.author">
+				<source>footer.author</source>
+				<target><![CDATA[Made by <a href="http://mynixworld.info">Eugen Mihailescu</a>]]></target>
+			</trans-unit>
+			<trans-unit id="footer.vendors">
+				<source>footer.vendors</source>
+				<target><![CDATA[Powered by <a href="https://symfony.com">Symfony Framework</a>. Theme by <a href="http://bootswatch.com">Bootswatch</a>.]]></target>
+			</trans-unit>
+			<trans-unit id="d7d0dc5d9eaeedc89b1c87bd4a21d1ec" resname="title.login">
+				<source>title.login</source>
+				<target>Secure Login</target>
+			</trans-unit>
+			<trans-unit id="83c8f6b769170fd9fbd13da3dab0fa66" resname="help.login_users">
+				<source>help.login_users</source>
+				<target>Try either of the following users</target>
+			</trans-unit>
+			<trans-unit id="462cc3f86a1fee6c52348107e9dca891" resname="label.role">
+				<source>label.role</source>
+				<target>Role</target>
+			</trans-unit>
+			<trans-unit id="d7d9935a52a4e41dd0cbd1e32a2d4c6d" resname="help.role_user">
+				<source>help.role_user</source>
+				<target>regular user</target>
+			</trans-unit>
+			<trans-unit id="be31f309c74bd604b2622f99a88f434b" resname="help.role_admin">
+				<source>help.role_admin</source>
+				<target>administrator</target>
+			</trans-unit>
+			<trans-unit id="411d2514756eb7816b1b455dba129810" resname="help.app_description">
+				<source>help.app_description</source>
+				<target><![CDATA[This is a <strong>demo application</strong> built on top of the Symfony to prove the power of this wonderful framework. The following modules are used]]></target>
+			</trans-unit>
+			<trans-unit id="f01db44ec90e2028b7791a99651cedf4" resname="help.more_information">
+				<source>help.more_information</source>
+				<target><![CDATA[For more information, check out the <a href="http://symfony.com/doc">Symfony doc</a>.]]></target>
+			</trans-unit>
+			<trans-unit id="4236a440a662cc8253d7536e5aa17942" resname="logout">
+				<source>logout</source>
+				<target>Logout</target>
+			</trans-unit>
+			<trans-unit id="app.title">
+				<source>app.title</source>
+				<target>Symfony Demo App</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

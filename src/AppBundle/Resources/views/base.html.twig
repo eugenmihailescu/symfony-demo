@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>{% block title %}Welcome!{% endblock %}</title>
+	{% block stylesheets %}
+            {% stylesheets output="css/app.css"
+            	"assets/vendor/bootstrap/dist/css/bootstrap.min.css"
+            	"assets/vendor/font-awesome/css/font-awesome.min.css"
+            	"assets/vendor/bootswatch/flatly/bootstrap.min.css"
+            	"bundles/app/css/*.css"
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        	 
+	{% endblock %}
+	{% block head_javascripts %}
+	{% javascripts 
+		'assets/vendor/jQuery/dist/*.min.js'
+		'assets/vendor/bootstrap/dist/js/bootstrap.min.js'
+		output='js/compiled/header.js'
+	%}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	{% endblock %}
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="wrap">
+	{% block header %}
+	{% include 'AppBundle::header.html.twig' %}
+	{% endblock %}
+	<div class="container body-container body-container-wrap">{% block body %}{% endblock %}</div>
+	</div>
+
+	{% block footer %}
+    {% include 'AppBundle::footer.html.twig' %}
+	{% endblock %}	 
+	
+	{% block footer_javascripts %} 
+	{% javascripts
+	'bundles/app/js/*'
+	output='js/compiled/app.js' %}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %} 
+	{% endblock %}
+</body>
+</html>

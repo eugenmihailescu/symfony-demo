@@ -1,0 +1,27 @@
+<table style="border-spacing: 5px 10px; border-collapse: separate;">
+	<tr>
+		<td><span>{{ 'show_prefix'|trans }}</span></td>
+		<td><input id="limit_rows" class="form-control" type="number"
+			value="{{ limit }}" min="1" max="10" style="width: 80px"></td>
+		<td><span>{{ 'show_sufix'|trans }}</span></td>
+		<td>
+			<button id="set_limit_rows" class="btn btn-default" type="button">{{
+				'btn_shop_top'|trans }}</button>
+		</td>
+	</tr>
+</table>
+{% block pagenav_javascript %}
+<script type="text/javascript">
+(function($){
+	$('#set_limit_rows').bind('click',function(){
+		var v=$('#limit_rows').val();
+		if(v>10||v<1)
+		{
+			v=5;
+		}
+		location.href='/{{ app.request.locale }}{{ route }}{{ entity }}/{{ page }}/'+v;
+	});
+})(jQuery);
+</script>
+
+{% endblock %}

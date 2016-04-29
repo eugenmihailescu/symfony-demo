@@ -1,0 +1,17 @@
+{% extends 'AppBundle::base.html.twig' %} {% block body %} {% for
+flash_message in app.session.flashBag.get('notice') %}
+<div class="alert alert-dismissible alert-success"
+	style="display: inline-block">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	{{ flash_message }}
+</div>
+{% endfor %}
+<h2>{{ 'list_of_posts'|trans }} {{ entity_alias }}</h2>
+<a href="/{{ app.request.locale }}/entity/edit/{{ entity }}">
+	<button class="btn btn-primary">{{ 'btn_add'|trans }}</button>
+</a>
+<a href="/{{ app.request.locale }}/entities">
+	<button class="btn btn-default">&larr; {{ 'list_of_entities'|trans }}</button>
+</a>
+{% include 'AppBundle::grid.html.twig' %}
+{% endblock %}
