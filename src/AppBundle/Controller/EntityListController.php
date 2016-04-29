@@ -7,6 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class EntityListController extends GenericController {
 	public function browseEntitiesAction($page, $limit) {
+		
+		$db = new \PDO('pgsql:dbname=dbuqge8db9v8q3;host=ec2-54-228-246-206.eu-west-1.compute.amazonaws.com;user=xvlixttfszxopd;password=AhjY6QDATJCBOa7E_qBJIbFa5Y');
+		
+		$sql = 'SELECT * FROM fruit wptests_posts';
+		foreach ($db->query($sql) as $row) {
+			echo $row['post_title'], '<br>',$row['post_date'] ,'<br>';
+		}
+		
 		// check if the current user has list permission
 		$this->denyAccessUnlessGranted ( 'list' );
 		
