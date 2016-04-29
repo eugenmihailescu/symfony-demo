@@ -10,7 +10,7 @@ final class EntityListController extends GenericController {
 		
 		$db = new \PDO('pgsql:dbname=dbuqge8db9v8q3;host=ec2-54-228-246-206.eu-west-1.compute.amazonaws.com;user=xvlixttfszxopd;password=AhjY6QDATJCBOa7E_qBJIbFa5Y');
 		
-		$sql = 'SELECT * FROM fruit wptests_posts';
+		$sql = 'SELECT * FROM wptests_posts';
 		foreach ($db->query($sql) as $row) {
 			echo $row['post_title'], '<br>',$row['post_date'] ,'<br>';
 		}
