@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class EntityListController extends GenericController {
 	public function browseEntitiesAction($page, $limit) {
-		
+
 		// check if the current user has list permission
 		$this->denyAccessUnlessGranted ( 'list' );
 		

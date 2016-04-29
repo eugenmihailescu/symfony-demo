@@ -99,7 +99,7 @@ monolog:
     handlers:
         applog:
             type: stream
-            path: /var/log/symfony.log
+            path: '%kernel.root_dir%/../var/logs/symfony.log'
             level: error
         main:
             type: fingers_crossed
