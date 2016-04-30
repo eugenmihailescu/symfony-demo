@@ -162,6 +162,18 @@
 				<source>label.embarrassing</source>
 				<target>Well, this is embarrassing</target>
 			</trans-unit>
+			<trans-unit id="label.info">
+				<source>label.info</source>
+				<target>Info</target>
+			</trans-unit>
+			<trans-unit id="info.role.admin">
+				<source>info.role.admin</source>
+				<target><![CDATA[The <code>ROLE_ADMIN</code> role gives you full access to application functions (ie. LIST, VIEW, EDIT, DELETE).]]></target>
+			</trans-unit>
+			<trans-unit id="info.role.user">
+				<source>info.role.user</source>
+				<target><![CDATA[The <code>ROLE_USER</code> role restricts the EDIT and DELETE functions.]]></target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -148,15 +148,13 @@
 				approved="no">
 				<source>footer.mit_license</source>
 				<target equiv-trans="yes" state="translated">Cod publicat sub &lt;a
-					href="https://opensource.org/licenses/MIT"&gt;licenta MIT&lt;/a&gt;
-				</target>
+					href="https://opensource.org/licenses/MIT"&gt;licenta MIT&lt;/a&gt; </target>
 			</trans-unit>
 			<trans-unit id="footer.author" translate="yes" reformat="yes"
 				xml:space="default" size-unit="pixel" approved="no">
 				<source>footer.author</source>
 				<target equiv-trans="yes" state="translated">Creata de &lt;a
-					href="http://mynixworld.info"&gt;Eugen Mihailescu&lt;/a&gt;
-				</target>
+					href="http://mynixworld.info"&gt;Eugen Mihailescu&lt;/a&gt; </target>
 			</trans-unit>
 			<trans-unit id="footer.vendors" translate="yes" reformat="yes"
 				xml:space="default" size-unit="pixel" approved="no">
@@ -248,6 +246,18 @@
 			<trans-unit id="label.embarrassing">
 				<source>label.embarrassing</source>
 				<target>Ei bine asta este chiar jenant</target>
+			</trans-unit>
+			<trans-unit id="label.info">
+				<source>label.info</source>
+				<target>Informatie</target>
+			</trans-unit>
+			<trans-unit id="info.role.admin">
+				<source>info.role.admin</source>
+				<target><![CDATA[Rolul <code>ROLE_ADMIN</code> faciliteaza accesul deplin la toate functiile aplicatiei (ex. LIST, VIEW, EDIT, DELETE).]]></target>
+			</trans-unit>
+			<trans-unit id="info.role.user">
+				<source>info.role.user</source>
+				<target><![CDATA[The <code>ROLE_USER</code> role restricts the EDIT and DELETE functions.]]></target>
 			</trans-unit>
 		</body>
 	</file>
