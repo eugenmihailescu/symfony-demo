@@ -16,7 +16,7 @@ final class EntityListController extends GenericController {
 		$entities = array (
 				[ ] 
 		);
-		$em = $this->getDoctrine ()->getManager ();
+		$em = $this->get('doctrine.orm.entity_manager');
 		$meta = $em->getMetadataFactory ()->getAllMetadata ();
 		foreach ( $meta as $m ) {
 			$parts = explode ( '\\', $m->getName () );

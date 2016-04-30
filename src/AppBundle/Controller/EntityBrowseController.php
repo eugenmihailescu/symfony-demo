@@ -20,7 +20,7 @@ final class EntityBrowseController extends GenericController {
 	public function browseEntityAction($entity, $page, $limit) {
 		$post_repository = $this->getDoctrine ()->getRepository ( 'AppBundle:' . $entity );
 		
-		$em = $this->getDoctrine ()->getManager ();
+		$em = $this->get('doctrine.orm.entity_manager');
 		
 		$persister = $em->getUnitOfWork ()->getEntityPersister ( 'AppBundle:' . $entity );
 		

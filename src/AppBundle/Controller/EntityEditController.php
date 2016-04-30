@@ -38,7 +38,7 @@ final class EntityEditController extends GenericController {
 			$translator = $this->get ( 'translator' );
 			$this->addFlash ( 'notice', $translator->trans ( 'post_saved' ) );
 			
-			$em = $this->getDoctrine ()->getManager ();
+			$em = $this->get('doctrine.orm.entity_manager');
 			$em->persist ( $post );
 			$em->flush ();
 			

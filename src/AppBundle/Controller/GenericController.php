@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Doctrine\Common\Annotations\AnnotationReader;
 use AppBundle\Annotation\LookupAnnotation;
 
 class GenericController extends Controller {
@@ -39,7 +38,7 @@ class GenericController extends Controller {
 	 * @return array
 	 */
 	protected function getPostFields($entity, $include_id = true) {
-		$em = $this->getDoctrine ()->getManager ();
+		$em = $this->get ( 'doctrine.orm.entity_manager' );
 		
 		$fields = $em->getClassMetadata ( 'AppBundle:' . $entity )->getFieldNames ();
 		
@@ -55,9 +54,9 @@ class GenericController extends Controller {
 		return $fields;
 	}
 	protected function getEntityAnnotations($entity, $annotation_name) {
-		$reader = new AnnotationReader ();
-		
 		$reflectionEntity = new \ReflectionClass ( 'AppBundle\Entity\\' . $entity );
+		
+		$reader = $this->get ( 'annotation_reader' );
 		
 		return $reader->getClassAnnotation ( $reflectionEntity, $annotation_name );
 	}
@@ -69,9 +68,9 @@ class GenericController extends Controller {
 	 * @return Ambiguous
 	 */
 	private function getFieldAnnotations($entity, $field_name, $annotation_name) {
-		$reader = new AnnotationReader ();
-		
 		$reflectionProperty = new \ReflectionProperty ( 'AppBundle\Entity\\' . $entity, $field_name );
+		
+		$reader = $this->get ( 'annotation_reader' );
 		
 		return $reader->getPropertyAnnotation ( $reflectionProperty, $annotation_name );
 	}
@@ -85,6 +84,7 @@ class GenericController extends Controller {
 		
 		// attempt to get the field type by type annotation helper
 		$annotation = $this->getFieldAnnotations ( $entity, $field_name, 'AppBundle\Annotation\FormFieldTypeAnnotation' );
+		
 		if ($annotation && $annotation->field_type) {
 			$class = 'Symfony\Component\Form\Extension\Core\Type\\' . $annotation->field_type . 'Type';
 			return $class;
@@ -214,7 +214,7 @@ class GenericController extends Controller {
 		// check if the current user has delete permission
 		$this->denyAccessUnlessGranted ( 'delete', $post );
 		
-		$em = $this->getDoctrine ()->getManager ();
+		$em = $this->get ( 'doctrine.orm.entity_manager' );
 		
 		$em->remove ( $post );
 		
