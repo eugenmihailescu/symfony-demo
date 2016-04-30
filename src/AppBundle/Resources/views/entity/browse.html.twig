@@ -7,10 +7,10 @@ flash_message in app.session.flashBag.get('notice') %}
 </div>
 {% endfor %}
 <h2>{{ 'list_of_posts'|trans }} {{ entity_alias }}</h2>
-<a href="/{{ app.request.locale }}/entity/edit/{{ entity }}">
+<a href="{{ routes.insrec }}">
 	<button class="btn btn-primary">{{ 'btn_add'|trans }}</button>
 </a>
-<a href="/{{ app.request.locale }}/entities">
+<a href="{{ routes.back }}">
 	<button class="btn btn-default">&larr; {{ 'list_of_entities'|trans }}</button>
 </a>
 {% include 'AppBundle::grid.html.twig' %}

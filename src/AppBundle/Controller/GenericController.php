@@ -195,10 +195,10 @@ class GenericController extends Controller {
 		
 		return $form;
 	}
-	protected function trans($string) {
+	protected function trans($string, $parameters = [], $domain = null, $locale = null) {
 		$translator = $this->get ( 'translator' );
 		
-		return $translator->trans ( $string );
+		return $translator->trans ( $string, $parameters, $domain, $locale );
 	}
 	
 	/**

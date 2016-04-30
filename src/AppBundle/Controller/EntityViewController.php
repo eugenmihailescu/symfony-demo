@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Controller\GenericController;
 use Symfony\Component\HttpFoundation\Response;
 
-final class PanelViewController extends GenericController {
+final class EntityViewController extends GenericController {
 	/**
 	 * Render the View page of the post given by $id
 	 *
@@ -15,7 +15,7 @@ final class PanelViewController extends GenericController {
 	 *        	The ID of the post to render
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function previewEntityAction($entity, $id) {
+	public function viewEntityAction($entity, $id) {
 		$post = $this->getPost ( $entity, $id );
 		
 		// check if the current user has view permission
@@ -27,16 +27,33 @@ final class PanelViewController extends GenericController {
 		
 		if ($annotation) {
 			$html = $templating->render ( 'AppBundle:entity:view.html.twig', array (
-					'pk' => $annotation->pk,
 					'item' => $post,
 					'fields' => $this->getPostFields ( $entity ),
-					'entity' => $entity 
+					'routes' => array (
+							'back' => $this->generateUrl ( 'browse_entity', array (
+									'entity' => $entity 
+							) ),
+							'edit' => $this->generateUrl ( 'edit_entity', array (
+									'entity' => $entity,
+									'id' => $id 
+							) ),
+							'delete' => $this->generateUrl ( 'delete_entity', array (
+									'entity' => $entity,
+									'id' => $id 
+							) ) 
+					) 
 			) );
 		} else {
-			$html = $templating->render ( 'AppBundle:error:entity_annotation.html.twig', array (
-					'entity' => $entity,
-					'annotation' => 'EntityAnnotation' 
+			$annotation = 'EntityAnnotationn';
+			$message = $this->trans ( 'entity.annotation.error.reason', array (
+					'entity.name' => $entity,
+					'annotation.name' => $annotation 
 			) );
+			$message .= '<br><br>' . $this->trans ( 'entity.annotation.error.hint', array (
+					'entity.name' => $entity,
+					'annotation.name' => $annotation 
+			) );
+			throw new \Exception ( $message );
 		}
 		
 		return new Response ( $html );

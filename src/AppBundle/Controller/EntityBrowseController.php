@@ -5,8 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Controller\GenericController;
 use Symfony\Component\HttpFoundation\Response;
 
-final class GridViewController extends GenericController {
+final class EntityBrowseController extends GenericController {
 	/**
+	 * Browse the entity's items
 	 *
 	 * @param string $entity
 	 *        	The entity name to query
@@ -16,7 +17,7 @@ final class GridViewController extends GenericController {
 	 *        	The number of records per page
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-	public function browseEntitiesAction($entity, $page, $limit) {
+	public function browseEntityAction($entity, $page, $limit) {
 		$post_repository = $this->getDoctrine ()->getRepository ( 'AppBundle:' . $entity );
 		
 		$em = $this->getDoctrine ()->getManager ();
@@ -56,18 +57,34 @@ final class GridViewController extends GenericController {
 					'columns' => $columns,
 					'entity_alias' => $annotation->alias,
 					'data' => $data,
-					'data_route' => '/entity/view/' . $entity,
 					'pages' => $page_count,
 					'page' => $page,
 					'limit' => $limit,
-					'entity' => $entity,
-					'route' => '/entity/browse/' 
+					'routes' => array (
+							'browse' => $this->generateUrl ( 'browse_entity', array (
+									'entity' => $entity 
+							) ),
+							// the record-specific route is rendered inside template
+							'grid' => $this->generateUrl ( 'view_entity', array (
+									'entity' => $entity 
+							) ) . '/',
+							'insrec' => $this->generateUrl ( 'edit_entity', array (
+									'entity' => $entity 
+							) ),
+							'back' => $this->generateUrl ( 'entities_list' ) 
+					) 
 			) );
 		} else {
-			$html = $templating->render ( 'AppBundle:error:entity_annotation.html.twig', array (
-					'entity' => $entity,
-					'annotation' => 'EntityAnnotationn' 
+			$annotation = 'EntityAnnotationn';
+			$message = $this->trans ( 'entity.annotation.error.reason', array (
+					'entity.name' => $entity,
+					'annotation.name' => $annotation 
 			) );
+			$message .= '<br><br>' . $this->trans ( 'entity.annotation.error.hint', array (
+					'entity.name' => $entity,
+					'annotation.name' => $annotation 
+			) );
+			throw new \Exception ( $message );
 		}
 		
 		return new Response ( $html );

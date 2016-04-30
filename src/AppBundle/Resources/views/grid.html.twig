@@ -18,7 +18,7 @@
 				{% for column in columns|keys %}
 					{% set j=i+(page-1)*limit*nzero_indexed %}
 					<td>
-						<a href="/{{ app.request.locale }}{{ data_route }}/{{ data[0][j][0] }}">{{ data[column][j][1] }}</a>
+						<a href="{{ routes.grid }}{{ data[0][j][0] }}">{{ data[column][j][1] }}</a>
 					</td>
 				{% endfor %}
 			</tr>

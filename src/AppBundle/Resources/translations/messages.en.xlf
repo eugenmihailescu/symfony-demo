@@ -142,6 +142,26 @@
 				<source>app.title</source>
 				<target>Symfony Demo App</target>
 			</trans-unit>
+			<trans-unit id="label.error">
+				<source>label.error</source>
+				<target>Error</target>
+			</trans-unit>
+			<trans-unit id="label.exception">
+				<source>label.exception</source>
+				<target>Exception</target>
+			</trans-unit>
+			<trans-unit id="entity.annotation.error.reason">
+				<source>entity.annotation.error.reason</source>
+				<target><![CDATA[Cannot determine the entity primary key and list columns.<br>The class `entity.name` does not use the annotation <code>@annotation.name</code>.]]></target>
+			</trans-unit>
+			<trans-unit id="entity.annotation.error.hint">
+				<source>entity.annotation.error.hint</source>
+				<target><![CDATA[Make sure you add the following annotation to the `entity.name` class: <blockquote>@annotation.name(pk="entity-pk", columns={"col1","col2",..})</blockquote>]]></target>
+			</trans-unit>
+			<trans-unit id="label.embarrassing">
+				<source>label.embarrassing</source>
+				<target>Well, this is embarrassing</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

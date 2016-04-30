@@ -1,0 +1,11 @@
+{% extends 'AppBundle::base.html.twig' %} 
+{% block body %}
+<div class="jumbotron">
+  <h2 class="text-danger">{{ status_text }} ({{ status_code }})</h2>
+  {% if is_exception %}
+  <p>{{ 'label.embarrassing'|trans }} :-(</p>
+  {% endif %}
+  <blockquote>{{ status_description|raw }}</blockquote>
+  <p><a href="#" class="btn btn-primary btn-lg" onclick="history.back()">&larr; {{ 'btn_back'|trans }}</a></p>
+</div>
+{% endblock %}

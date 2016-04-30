@@ -1,15 +1,15 @@
 {% if pages>1 %}
 <ul class="pagination">
 	<li {% if page==1 %} class="disabled"{% endif %}>
-		<a href="{% if page==1 %}#{% else %}/{{ app.request.locale }}{{ route }}{{ entity }}/1/{{ limit }}{% endif %}">&laquo;</a>
+		<a href="{% if page==1 %}#{% else %}{{ routes.browse }}/1/{{ limit }}{% endif %}">&laquo;</a>
 	</li>
 	{% for i in 1..pages %}
 	<li {% if i == page %} class="active"{% endif %}>
-		<a href="{% if i == page %}#{% else %}/{{ app.request.locale }}{{ route }}{{ entity }}/{{ i }}/{{ limit }}{% endif %}">{{ i }}</a>
+		<a href="{% if i == page %}#{% else %}{{ routes.browse }}/{{ i }}/{{ limit }}{% endif %}">{{ i }}</a>
 	</li>
 	{% endfor %}
 	<li {% if page==pages %} class="disabled"{% endif %}>
-		<a href="{% if page==pages %}#{% else %}/{{ app.request.locale }}{{ route }}{{ entity }}/{{ pages }}/{{ limit }}{% endif %}">&raquo;</a>
+		<a href="{% if page==pages %}#{% else %}/{{ routes.browse }}/{{ pages }}/{{ limit }}{% endif %}">&raquo;</a>
 	</li>
 </ul>
 {% endif %}

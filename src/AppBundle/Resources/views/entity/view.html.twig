@@ -1,9 +1,7 @@
 {% extends 'AppBundle::base.html.twig' %} {% block body %}
 <ul class="pager">
-	<li><a href="/{{ app.request.locale }}/entity/browse/{{ entity }}">&larr; {{
-			'btn_back'|trans }}</a></li>
-	<li><a href="/{{ app.request.locale }}/entity/edit/{{ entity }}/{{ attribute(item,pk) }}">{{
-			'btn_edit'|trans }}</a></li>
+	<li><a href="{{ routes.back }}">&larr; {{ 'btn_back'|trans }}</a></li>
+	<li><a href="{{ routes.edit }}">{{ 'btn_edit'|trans }}</a></li>
 	<li><a href="#" id="btn_delete_confirm">{{ 'btn_delete'|trans }}</a></li>
 </ul>
 <h3>{{ 'post_details'|trans }}</h3>
@@ -29,7 +27,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'btn_cancel'|trans }}</button>
-        <a href="/{{ app.request.locale }}/entity/delete/{{ entity }}/{{ attribute(item,pk) }}"><button type="button" class="btn btn-danger">{{ 'btn_delete'|trans }}</button></a>
+        <a href="{{ routes.delete }}"><button type="button" class="btn btn-danger">{{ 'btn_delete'|trans }}</button></a>
       </div>
     </div>
   </div>

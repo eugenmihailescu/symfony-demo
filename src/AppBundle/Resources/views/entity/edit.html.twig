@@ -28,7 +28,7 @@
 {% block javascript %}
 <script type="text/javascript">
 (function($){
-	$('*[data-dismiss="cancel"]').bind('click',function(){location.href="/{{ app.request.locale }}/entity/browse/{{ entity }}";});
+	$('*[data-dismiss="cancel"]').bind('click',function(){location.href="{{ routes.browse }}";});
 	$("#{{ form_id }} table td:last-child:not(:empty):first").each(function(index,value){$('html,body').animate({scrollTop:$(value).offset().top},500);});
 })(jQuery);
 </script>

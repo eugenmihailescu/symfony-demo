@@ -1,9 +1,0 @@
-{% extends 'AppBundle::base.html.twig' %} 
-{% block body %}
-<div class="jumbotron">
-  <h2 class="text-danger">Error</h2>
-  <p>Cannot determine the entity primary key and list columns.<br>Entity `{{ entity }}` does not uses the annotation {{ annotation }}.</p>
-  <p>Make sure you add the following annotation to the `{{ entity }}` entity:<blockquote>@{{ annotation }}(pk="entity-pk", columns={"col1","col2",..}})</blockquote></p>
-  <p><a class="btn btn-primary btn-lg" onclick="history.back()">Back</a></p>
-</div>
-{% endblock %}

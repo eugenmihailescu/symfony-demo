@@ -16,7 +16,7 @@ homepage:
     page: '%first_page%'
     limit: '%recs_per_page%'
 entities_list:
-  path: /{_locale}/entities/{page}/{limit}
+  path: /{_locale}/entities/browse/{page}/{limit}
   requirements:
     _locale: '%app_locales%'
     page: '[1-9]\d*'
@@ -32,10 +32,10 @@ browse_entity:
     _locale: '%app_locales%'
     page: '[1-9]\d*'
     limit: '[1-9]\d*'
-    entity: '[a-zA-Z][\w\d$_]*'
+    entity: ([a-zA-Z][\w\d$_]*)?
   defaults:
     _locale: '%locale%'
-    _controller: AppBundle:GridView:browseEntities
+    _controller: AppBundle:EntityBrowse:browseEntity
     page: '%first_page%'
     limit: '%recs_per_page%'
 view_entity:
@@ -46,7 +46,8 @@ view_entity:
     id: \d+
   defaults:
     _locale: '%locale%'
-    _controller: AppBundle:PanelView:previewEntity
+    _controller: AppBundle:EntityView:viewEntity
+    id: 0
   methods:
   - GET
   - HEAD
@@ -58,7 +59,7 @@ edit_entity:
     id: \d+
   defaults:
     _locale: '%locale%'
-    _controller: AppBundle:EditView:editEntity
+    _controller: AppBundle:EntityEdit:editEntity
     success: null
     id: -1
   methods:

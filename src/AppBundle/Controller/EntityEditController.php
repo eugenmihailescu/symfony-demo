@@ -6,7 +6,7 @@ use AppBundle\Controller\GenericController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class EditViewController extends GenericController {
+final class EntityEditController extends GenericController {
 	/**
 	 * Render the Edit page of the post given by $id
 	 *
@@ -62,7 +62,11 @@ final class EditViewController extends GenericController {
 						$post,
 						'get' . ucfirst ( $annotation->pk ) 
 				) ) : '',
-				'entity' => $entity 
+				'routes' => array (
+						'browse' => $this->generateUrl ( 'browse_entity', array (
+								'entity' => $entity 
+						) ) 
+				) 
 		) );
 		
 		return new Response ( $html );
