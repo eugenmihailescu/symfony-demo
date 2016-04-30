@@ -91,6 +91,9 @@ class EntityVoter extends Voter {
 		
 		throw new \LogicException ( 'This code should not be reached!' );
 	}
+	private function is_admin($user) {
+		return in_array ( 'ROLE_ADMIN', $user->getRoles () );
+	}
 	private function canView($subject, User $user) {
 		// if they can edit, they can view
 		if ($this->canEdit ( $subject, $user )) {
@@ -107,7 +110,10 @@ class EntityVoter extends Voter {
 		return true;
 	}
 	private function canEdit($subject, User $user) {
-		// the user can edit only if is admin
+		if (! $this->is_admin ( $user ))
+			return false;
+			
+			// the user can edit only if is admin
 		if (method_exists ( $subject, $this->can_edit )) {
 			return call_user_func ( array (
 					$subject,
@@ -118,7 +124,10 @@ class EntityVoter extends Voter {
 		return true;
 	}
 	private function canDelete($subject, User $user) {
-		// if they can edit, they can delete
+		if (! $this->is_admin ( $user ))
+			return false;
+			
+			// if they can edit, they can delete
 		if ($this->canEdit ( $subject, $user )) {
 			return true;
 		}
