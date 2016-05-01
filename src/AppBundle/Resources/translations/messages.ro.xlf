@@ -129,7 +129,7 @@
 				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
 				approved="no">
 				<source>show_sufix</source>
-				<target equiv-trans="yes" state="translated">elemente/pagina</target>
+				<target equiv-trans="yes" state="translated">rec/pag</target>
 			</trans-unit>
 			<trans-unit id="adde308c0c225548212c43a9bfe186b5" resname="list_of_entities"
 				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"

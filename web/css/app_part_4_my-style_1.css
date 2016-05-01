@@ -32,7 +32,7 @@ footer {
 	padding-bottom: 2em;
 	width: 100%;
 	position: fixed;
-	bottom:0;
+	bottom: 0;
 	z-index: 100;
 }
 
@@ -78,3 +78,7 @@ footer #footer-resources i {
 	margin-bottom: 0px;
 }
 
+@media ( max-width : 480px) {
+	footer {
+	}
+}

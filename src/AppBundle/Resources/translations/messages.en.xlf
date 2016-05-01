@@ -80,7 +80,7 @@
 			</trans-unit>
 			<trans-unit id="959e6cf0a08acf95da28eed7d5f19726" resname="show_sufix">
 				<source>show_sufix</source>
-				<target>posts/page</target>
+				<target>items/page</target>
 			</trans-unit>
 			<trans-unit id="03566a59ac5e38ae6cc22bbe21e1e95a" resname="post_deleted">
 				<source>post_deleted</source>
