@@ -102,7 +102,7 @@ footer #footer-resources i {
 }
 
 /* Portrait and Landscape */
-@media ( device-height : 480px) {
+@media ( max-height : 480px) {
 	footer {
 		display: none;
 	}
