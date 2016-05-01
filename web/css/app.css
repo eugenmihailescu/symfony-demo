@@ -101,15 +101,9 @@ footer #footer-resources i {
 	margin-bottom: 0px;
 }
 
-@media ( max-width : 480px) {
-	.footer-resources {
-		position: fixed;
-		bottom: 0;
-		right: 0;
-	}
-}
-
-@media ( max-height :480px) {
+/* Portrait and Landscape */
+@media screen and (device-width: 360px) and (device-height: 640px) and
+	(-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
 	footer {
 		display: none;
 	}
