@@ -102,8 +102,7 @@ footer #footer-resources i {
 }
 
 /* Portrait and Landscape */
-@media ( device-height : 480px) and (orientation: landscape) and
-	(-webkit-device-pixel-ratio: 3) {
+@media ( device-height : 480px) {
 	footer {
 		display: none;
 	}
