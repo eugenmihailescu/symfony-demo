@@ -102,7 +102,9 @@ footer #footer-resources i {
 }
 
 @media ( max-width : 480px) {
-	footer {
-		
+	.footer-resources {
+		position: fixed;
+		bottom: 0;
+		right: 0;
 	}
 }
