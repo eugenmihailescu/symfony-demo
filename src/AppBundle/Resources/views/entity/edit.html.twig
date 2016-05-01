@@ -5,32 +5,60 @@
 <button type="button" class="close" data-dismiss="alert">&times;</button>
 {{ flash_message }}
 </div>
-{% endfor %} 
-<h3>
-{{ 'post_details'|trans }} ({{ id }})
-</h3>
+{% endfor %}
+<ul class="pager">
+	<li><a href="{{ routes.back }}">&larr; {{ 'btn_cancel'|trans }}</a></li>
+{% if is_readonly %}
+	<li><a href="{{ routes.edit }}">{{ 'btn_edit'|trans }}</a></li>
+	<li><a href="#" id="btn_delete_confirm">{{ 'btn_delete'|trans }}</a></li>
+{% else %}	
+	<li><input type="submit" form="{{ form_id }}" value="{{ 'btn_save'|trans }}" style="color: #FFF;display: inline-block;padding: 5px 14px;background-color: #18BC9C;border: 1px solid transparent;border-radius: 15px;"></li>
+{% endif %}
+</ul>
 {{ form_start(form) }}
-<button type="button" class="btn btn-default" data-dismiss="cancel">{{ 'btn_cancel'|trans }}</button>
-<button type="submit" class="btn btn-primary">{{ 'btn_save'|trans }}</button>
-<table>
+<fieldset>
+		<legend>{{ 'post_details'|trans }} (pk:{{ id }})</legend>
 {{ form_errors(form) }}
 {% for field in fields %}
-<tr>
-<td>{{ form_label(form[field]) }}</td>
-<td>{{ form_widget(form[field]) }}</td>
-<td>{{ form_errors(form[field]) }}</td>
-</tr>
+<div class="form-group">
+{{ form_label(form[field],null,{'label_attr':{'class':'col-lg-2 control-label'}}) }}
+<div class="col-lg-10">{{ form_widget(form[field],{'attr':{'readonly':is_readonly}}) }}
+<div class="text-danger">
+{{ form_errors(form[field]) }}
+</div>
+</div>
+</div>
 {% endfor %}
-</table>
-<button type="button" class="btn btn-default" data-dismiss="cancel">{{ 'btn_cancel'|trans }}</button>
-<button type="submit" class="btn btn-primary">{{ 'btn_save'|trans }}</button>
+</fieldset>
+{% if not is_readonly and token_id is defined %}
+<input type="hidden" name="{{ token_id }}" value="{{ csrf_token(token_id) }}">
 {{ form_end(form) }}
-{% block javascript %}
+{% endif %}
+{% if is_readonly %}
+<div id="delete_confirm" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{{ 'confirm_dialog'|trans }}</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">{{ 'confirm_delete_entry'|trans }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'btn_cancel'|trans }}</button>
+        <a href="{{ routes.delete }}"><button type="button" class="btn btn-danger">{{ 'btn_delete'|trans }}</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+{% block javascripts %}
 <script type="text/javascript">
 (function($){
-	$('*[data-dismiss="cancel"]').bind('click',function(){location.href="{{ routes.browse }}";});
-	$("#{{ form_id }} table td:last-child:not(:empty):first").each(function(index,value){$('html,body').animate({scrollTop:$(value).offset().top},500);});
+	$('*[data-dismiss="modal"]').bind('click',function(){$('#delete_confirm').hide();});
+	$('#btn_delete_confirm').bind('click',function(){$('#delete_confirm').show();});
 })(jQuery);
 </script>
 {% endblock %}
+{% endif %}
 {% endblock %}

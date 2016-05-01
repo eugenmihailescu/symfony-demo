@@ -31,6 +31,9 @@ footer {
 	padding-top: 2em;
 	padding-bottom: 2em;
 	width: 100%;
+	position: fixed;
+	bottom:0;
+	z-index: 100;
 }
 
 footer #footer-resources {
@@ -50,6 +53,7 @@ footer #footer-resources i {
 
 .body-container-wrap {
 	top: 100px;
+	margin-bottom: 124px;
 }
 
 .wrap:AFTER {
@@ -73,3 +77,4 @@ footer #footer-resources i {
 #footer-copyright>p {
 	margin-bottom: 0px;
 }
+

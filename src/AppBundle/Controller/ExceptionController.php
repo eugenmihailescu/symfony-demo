@@ -23,7 +23,10 @@ class ExceptionController extends ExceptionController {
 				'status_code' => $code,
 				'status_text' => isset ( Response::$statusTexts [$code] ) ? Response::$statusTexts [$code] : '',
 				'status_description' => $exception->getMessage (),
+				'file' => $exception->getFile (),
+				'lineno' => $exception->getLine (),
 				'exception' => $exception,
+				'trace' => print_r($exception->getTrace (),1),
 				'logger' => $logger,
 				'currentContent' => $currentContent 
 		) ) );

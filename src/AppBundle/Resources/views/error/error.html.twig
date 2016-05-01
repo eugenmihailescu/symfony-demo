@@ -4,8 +4,44 @@
   <h2 class="text-danger">{{ status_text }} ({{ status_code }})</h2>
   {% if is_exception %}
   <p>{{ 'label.embarrassing'|trans }} :-(</p>
-  {% endif %}
-  <blockquote>{{ status_description|raw }}</blockquote>
-  <p><a href="#" class="btn btn-primary btn-lg" onclick="history.back()">&larr; {{ 'btn_back'|trans }}</a></p>
+  <blockquote>
+  <p>{{ status_description|raw }}</p>
+  <small>{{ file }}:{{ lineno }}</small>
+  </blockquote>
+	{% else %}
+    <blockquote>
+    {{ status_description|raw }}
+    </blockquote>
+	{% endif %}
+	<p>
+		<a href="#" class="btn btn-primary btn-lg" onclick="history.back()">&larr; {{ 'btn_back'|trans }}</a> 
+	{% if is_exception and app.environment=='dev' %} <span id="show_trace" class="btn btn-primary btn-lg btn-warning"><i class="fa fa-bug" aria-hidden="true"></i> Show Trace</span>
+	<div id="trace_popup" class="panel panel-default" style="display: none">
+		<pre class="panel-body" style="background-color: #FFF">{{ trace }}</pre>
+	</div>
+	{% endif %}
+	</p>
 </div>
+{% block javascript %}
+<script type="text/javascript">
+(function($){
+	$('*[data-dismiss="modal"]').bind('click',function(){$('#trace_popup').hide();});
+	$('#show_trace').bind('click',function(){
+			var e=$(this);
+			$('#trace_popup').toggle({duration:200,complete:function(){
+					var visible=$('#'+$(this).attr('id')+':visible').length,faicon,caption,flip;
+					if(visible){
+						flip='fa-flip-vertical';
+						caption='Hide trace';
+					}
+					else{
+						flip='';
+						caption='Show trace';
+					}
+					e.html('<i class="fa fa-bug '+flip+'" aria-hidden="true"></i> '+caption);
+			}});
+	});
+})(jQuery);
+</script>
+{% endblock %}
 {% endblock %}

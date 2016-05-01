@@ -34,6 +34,9 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
+    ide: eclipse
+    form:
+      csrf_protection: false
 
 # Twig Configuration
 twig:

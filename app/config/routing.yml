@@ -50,7 +50,6 @@ view_entity:
     id: 0
   methods:
   - GET
-  - HEAD
 edit_entity:
   path: /{_locale}/entity/edit/{entity}/{id}/{success}
   requirements:
@@ -63,9 +62,8 @@ edit_entity:
     success: null
     id: -1
   methods:
-  - GET
-  - HEAD
   - POST
+  - GET
 delete_entity:
   path: /{_locale}/entity/delete/{entity}/{id}
   requirements:
@@ -77,8 +75,6 @@ delete_entity:
     _controller: AppBundle:Generic:deleteEntity
   methods:
   - GET
-  - HEAD
-  - POST
 pageNotFound:
   path: /{path}
   defaults:

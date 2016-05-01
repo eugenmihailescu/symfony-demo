@@ -18,6 +18,8 @@ final class EntityBrowseController extends GenericController {
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function browseEntityAction($entity, $page, $limit) {
+		$this->setEntity($entity);
+		
 		$post_repository = $this->getDoctrine ()->getRepository ( 'AppBundle:' . $entity );
 		
 		$em = $this->get('doctrine.orm.entity_manager');
@@ -32,7 +34,7 @@ final class EntityBrowseController extends GenericController {
 		
 		$templating = $this->get ( 'templating' );
 		
-		$annotation = $this->getEntityAnnotations ( $entity, 'AppBundle\Annotation\EntityAnnotation' );
+		$annotation = $this->getEntityAnnotations (  'AppBundle\Annotation\EntityAnnotation' );
 		
 		if ($annotation) {
 			$columns = array_merge ( array (

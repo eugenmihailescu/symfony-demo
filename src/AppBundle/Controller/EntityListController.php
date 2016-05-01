@@ -16,14 +16,14 @@ final class EntityListController extends GenericController {
 		$entities = array (
 				[ ] 
 		);
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->get ( 'doctrine.orm.entity_manager' );
 		$meta = $em->getMetadataFactory ()->getAllMetadata ();
 		foreach ( $meta as $m ) {
 			$parts = explode ( '\\', $m->getName () );
 			$key = end ( $parts );
 			
 			// dinamically get value by entity annotation (if any)
-			$annotation = $this->getEntityAnnotations ( $key, 'AppBundle\Annotation\EntityAnnotation' );
+			$annotation = $this->getEntityAnnotations ( 'AppBundle\Annotation\EntityAnnotation', $key );
 			if ($annotation && ! empty ( $annotation->alias ))
 				$entities [0] [] = array (
 						$key,
