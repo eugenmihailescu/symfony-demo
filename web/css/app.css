@@ -108,3 +108,9 @@ footer #footer-resources i {
 		right: 0;
 	}
 }
+
+@media ( max-height :480px) {
+	footer {
+		display: none;
+	}
+}
