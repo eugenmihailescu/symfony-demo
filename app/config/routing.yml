@@ -75,6 +75,12 @@ delete_entity:
     _controller: AppBundle:Generic:deleteEntity
   methods:
   - GET
+help:
+  path: /{_locale}/help
+  defaults:
+    _locale: '%locale%'
+    _controller: FrameworkBundle:Template:template
+    template: "@twig_templates/help.html.twig"  
 pageNotFound:
   path: /{path}
   defaults:

@@ -1,0 +1,18 @@
+{% set symfony_doc_url="http://symfony.com/doc/current/book/" %}
+{% if symfony_link_class is not defined %}
+{% set symfony_link_class='' %}
+{% endif %}
+<ul class="{{ symfony_link_class }}">
+	<li><a href="{{ symfony_doc_url }}security.html">Security</a></li>
+	<li><a href="{{ symfony_doc_url }}controller.html">Controller</a></li>
+	<li><a href="{{ symfony_doc_url }}routing.html"> Routing </a></li>
+	<li><a href="{{ symfony_doc_url }}templating.html"> Templating </a></li>
+	<li><a href="{{ symfony_doc_url }}doctrine.html"> Doctrine </a></li>
+	<li><a href="{{ symfony_doc_url }}forms.html"> Forms </a></li>
+	<li><a href="{{ symfony_doc_url }}validation.html"> Validation </a></li>
+	<li><a href="{{ symfony_doc_url }}translation.html"> Translation </a>
+	</li>
+	<li><a href="{{ symfony_doc_url }}service_container.html">
+			Services </a></li>
+</ul>
+<p>{{ 'help.more_information'|trans|raw }}</p>

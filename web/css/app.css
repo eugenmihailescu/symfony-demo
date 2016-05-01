@@ -26,6 +26,7 @@ html, body {
 	height: 100%;
 }
 
+/* FORM */
 .form-control {
 	height: auto;
 }
@@ -39,6 +40,7 @@ html, body {
 	color: #E74C3C;
 }
 
+/* HEADER */
 header {
 	width: 100%;
 	position: fixed;
@@ -46,6 +48,7 @@ header {
 	z-index: 1000;
 }
 
+/* FOOTER */
 footer {
 	height: 124px;
 	background: #ECF0F1 none repeat scroll 0% 0%;
@@ -69,6 +72,18 @@ footer #footer-resources i {
 	margin-left: 0.5em;
 }
 
+#footer-copyright>p {
+	margin-bottom: 0px;
+}
+
+/* Portrait and Landscape */
+@media ( max-height : 320px) {
+	footer {
+		display: none;
+	}
+}
+
+/* BODY */
 .wrap {
 	min-height: 100%;
 	margin-bottom: -124px;
@@ -97,13 +112,8 @@ footer #footer-resources i {
 	box-shadow: 0px 5px 10px;
 }
 
-#footer-copyright>p {
-	margin-bottom: 0px;
+/* MISCELLANEOUS */
+.left-aligned{
+	text-align: left;
 }
 
-/* Portrait and Landscape */
-@media ( max-height : 320px) {
-	footer {
-		display: none;
-	}
-}
