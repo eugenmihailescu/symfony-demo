@@ -72,13 +72,6 @@ footer #footer-resources i {
 	margin-bottom: 0px;
 }
 
-/* Portrait and Landscape */
-@media screen and ( max-height : 320px) {
-	footer {
-		display: none;
-	}
-}
-
 /* BODY */
 .wrap {
 	min-height: 100%;
@@ -117,4 +110,18 @@ footer #footer-resources i {
 /* MISCELLANEOUS */
 .left-aligned {
 	text-align: left;
+}
+
+@media screen and ( max-height : 320px) {
+	footer {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	footer #footer-resources {
+		position: absolute !important;
+		bottom: 0px !important;
+		right: 0px !important;
+	}
 }
