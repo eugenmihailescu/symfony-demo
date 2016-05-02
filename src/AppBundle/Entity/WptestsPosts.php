@@ -14,7 +14,7 @@ use AppBundle\Annotation\EntityAnnotation;
  * WptestsPosts
  *
  * @ORM\Table(name="wptests_posts", indexes={@ORM\Index(name="post_name", columns={"post_name"}),
- * @ORM\Index(name="type_status_date", columns={"post_type", "post_status", "post_date", "id"}),
+ * @ORM\Index(name="type_status_date", columns={"post_type", "post_status", "post_date", "ID"}),
  * @ORM\Index(name="post_parent", columns={"post_parent"}), @ORM\Index(name="post_author", columns={"post_author"})})
  * @ORM\Entity
  * @EntityAnnotation(pk="id",columns={"postTitle"},alias="articole")
@@ -22,7 +22,7 @@ use AppBundle\Annotation\EntityAnnotation;
 class WptestsPosts {
 	/**
 	 * @ORM\ManyToOne(targetEntity="WptestsUsers",inversedBy="posts")
-	 * @ORM\JoinColumn(name="post_author", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="post_author", referencedColumnName="ID")
 	 */
 	private $author;
 	
@@ -218,7 +218,7 @@ class WptestsPosts {
 	
 	/**
 	 *
-	 * @ORM\Column(name="id", type="bigint")
+	 * @ORM\Column(name="ID", type="bigint")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 *
