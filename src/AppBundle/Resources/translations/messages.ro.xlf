@@ -1,264 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-	<file source-language="en" target-language="ro" datatype="plaintext"
-		original="file.ext">
-		<header>
-			<tool tool-id="symfony" tool-name="Symfony"></tool>
-		</header>
-		<body>
-			<trans-unit id="7f86cc02647e5125414907d14baec970" resname="post_details"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>post_details</source>
-				<target equiv-trans="yes" state="translated">Detalii</target>
-			</trans-unit>
-			<trans-unit id="d8e8503d5aa37a5273e554d183675705" resname="btn_back"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_back</source>
-				<target equiv-trans="yes" state="translated">Inapoi</target>
-			</trans-unit>
-			<trans-unit id="036be21ce14ef324858b829b26f9cf76" resname="btn_edit"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_edit</source>
-				<target equiv-trans="yes" state="translated">Editeaza</target>
-			</trans-unit>
-			<trans-unit id="55e41eae14040d579f471d891ede7918" resname="btn_delete"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_delete</source>
-				<target equiv-trans="yes" state="translated">Sterge</target>
-			</trans-unit>
-			<trans-unit id="15dfdcdfb58bbbbc667dbd7d48834804" resname="list_of_posts"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>list_of_posts</source>
-				<target equiv-trans="yes" state="translated">Lista</target>
-			</trans-unit>
-			<trans-unit id="bed0b2b8d0c9f5298f3add599c5e3452" resname="btn_save"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_save</source>
-				<target equiv-trans="yes" state="translated">Salveaza</target>
-			</trans-unit>
-			<trans-unit id="d36e0377de82a30f25681d2312e926ea" resname="post_saved"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>post_saved</source>
-				<target equiv-trans="yes" state="translated">Modificari salvate cu succes
+  <file source-language="en" target-language="ro" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="7f86cc02647e5125414907d14baec970" resname="post_details">
+        <source>post_details</source>
+        <target equiv-trans="yes" state="translated">Detalii</target>
+      </trans-unit>
+      <trans-unit id="d8e8503d5aa37a5273e554d183675705" resname="btn_back">
+        <source>btn_back</source>
+        <target equiv-trans="yes" state="translated">Inapoi</target>
+      </trans-unit>
+      <trans-unit id="036be21ce14ef324858b829b26f9cf76" resname="btn_edit">
+        <source>btn_edit</source>
+        <target equiv-trans="yes" state="translated">Editeaza</target>
+      </trans-unit>
+      <trans-unit id="55e41eae14040d579f471d891ede7918" resname="btn_delete">
+        <source>btn_delete</source>
+        <target equiv-trans="yes" state="translated">Sterge</target>
+      </trans-unit>
+      <trans-unit id="15dfdcdfb58bbbbc667dbd7d48834804" resname="list_of_posts">
+        <source>list_of_posts</source>
+        <target equiv-trans="yes" state="translated">Lista</target>
+      </trans-unit>
+      <trans-unit id="bed0b2b8d0c9f5298f3add599c5e3452" resname="btn_save">
+        <source>btn_save</source>
+        <target equiv-trans="yes" state="translated">Salveaza</target>
+      </trans-unit>
+      <trans-unit id="d36e0377de82a30f25681d2312e926ea" resname="post_saved">
+        <source>post_saved</source>
+        <target equiv-trans="yes" state="translated">Modificari salvate cu succes
 				</target>
-			</trans-unit>
-			<trans-unit id="03566a59ac5e38ae6cc22bbe21e1e95a" resname="post_deleted"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>post_deleted</source>
-				<target equiv-trans="yes" state="translated">Articol sters cu succes
+      </trans-unit>
+      <trans-unit id="03566a59ac5e38ae6cc22bbe21e1e95a" resname="post_deleted">
+        <source>post_deleted</source>
+        <target equiv-trans="yes" state="translated">Articol sters cu succes
 				</target>
-			</trans-unit>
-			<trans-unit id="b0458ea6ff42196b250ca7f4637ac6ee" resname="login_username"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>login_username</source>
-				<target equiv-trans="yes" state="translated">Nume utilizator</target>
-			</trans-unit>
-			<trans-unit id="364de776ef33be2f50765c1ffa5f4e38" resname="login_password"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>login_password</source>
-				<target equiv-trans="yes" state="translated">Parola</target>
-			</trans-unit>
-			<trans-unit id="b3e3ec57b4cda37e92afbfca5bb1adce" resname="keep_me_logged_in"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>keep_me_logged_in</source>
-				<target equiv-trans="yes" state="translated">Pastreaza-ma conectat
+      </trans-unit>
+      <trans-unit id="b0458ea6ff42196b250ca7f4637ac6ee" resname="login_username">
+        <source>login_username</source>
+        <target equiv-trans="yes" state="translated">Nume utilizator</target>
+      </trans-unit>
+      <trans-unit id="364de776ef33be2f50765c1ffa5f4e38" resname="login_password">
+        <source>login_password</source>
+        <target equiv-trans="yes" state="translated">Parola</target>
+      </trans-unit>
+      <trans-unit id="b3e3ec57b4cda37e92afbfca5bb1adce" resname="keep_me_logged_in">
+        <source>keep_me_logged_in</source>
+        <target equiv-trans="yes" state="translated">Pastreaza-ma conectat
 				</target>
-			</trans-unit>
-			<trans-unit id="99dea78007133396a7b8ed70578ac6ae" resname="Login"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>Login</source>
-				<target equiv-trans="yes" state="translated">Conectare</target>
-			</trans-unit>
-			<trans-unit id="93c4f9293f239af6fe3db5c0d933c91e" resname="home_page"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>home_page</source>
-				<target equiv-trans="yes" state="translated">Acasa</target>
-			</trans-unit>
-			<trans-unit id="03900888223c2f0bf28f485c1165c4e9" resname="btn_cancel"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_cancel</source>
-				<target equiv-trans="yes" state="translated">Renunta</target>
-			</trans-unit>
-			<trans-unit id="eb5603e3964a9803f2208fc29b3e349c" resname="confirm_dialog"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>confirm_dialog</source>
-				<target equiv-trans="yes" state="translated">Confirmare</target>
-			</trans-unit>
-			<trans-unit id="07d502b014f24ede5c3bb3d0112a67f8" resname="confirm_delete_entry"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>confirm_delete_entry</source>
-				<target equiv-trans="yes" state="translated">Sunteti sigur ca doriti sa
+      </trans-unit>
+      <trans-unit id="99dea78007133396a7b8ed70578ac6ae" resname="Login">
+        <source>Login</source>
+        <target equiv-trans="yes" state="translated">Conectare</target>
+      </trans-unit>
+      <trans-unit id="93c4f9293f239af6fe3db5c0d933c91e" resname="home_page">
+        <source>home_page</source>
+        <target equiv-trans="yes" state="translated">Acasa</target>
+      </trans-unit>
+      <trans-unit id="03900888223c2f0bf28f485c1165c4e9" resname="btn_cancel">
+        <source>btn_cancel</source>
+        <target equiv-trans="yes" state="translated">Renunta</target>
+      </trans-unit>
+      <trans-unit id="eb5603e3964a9803f2208fc29b3e349c" resname="confirm_dialog">
+        <source>confirm_dialog</source>
+        <target equiv-trans="yes" state="translated">Confirmare</target>
+      </trans-unit>
+      <trans-unit id="07d502b014f24ede5c3bb3d0112a67f8" resname="confirm_delete_entry">
+        <source>confirm_delete_entry</source>
+        <target equiv-trans="yes" state="translated">Sunteti sigur ca doriti sa
 					stergeti aceasta inregistrare?
 				</target>
-			</trans-unit>
-			<trans-unit id="bf4b06aff87a1583cca744c66c93b7e3" resname="btn_add"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_add</source>
-				<target equiv-trans="yes" state="translated">Adauga articol nou</target>
-			</trans-unit>
-			<trans-unit id="e9744063b078083017a5c5f887d32291" resname="btn_shop_top"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>btn_shop_top</source>
-				<target equiv-trans="yes" state="translated">Aplica</target>
-			</trans-unit>
-			<trans-unit id="df29261e816d5fd3622f44ed1248edaf" resname="show_prefix"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>show_prefix</source>
-				<target equiv-trans="yes" state="translated">Afiseaza</target>
-			</trans-unit>
-			<trans-unit id="959e6cf0a08acf95da28eed7d5f19726" resname="show_sufix"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>show_sufix</source>
-				<target equiv-trans="yes" state="translated">rec/pag</target>
-			</trans-unit>
-			<trans-unit id="adde308c0c225548212c43a9bfe186b5" resname="list_of_entities"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>list_of_entities</source>
-				<target equiv-trans="yes" state="translated">Lista de entitati</target>
-			</trans-unit>
-			<trans-unit id="858454f450fc6a88731518234915dc47" resname="entity_name"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>entity_name</source>
-				<target equiv-trans="yes" state="translated">Nume entitate</target>
-			</trans-unit>
-			<trans-unit id="0c2b685d7526be6fb46229c4fd82c99c" resname="footer.mit_license"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>footer.mit_license</source>
-				<target equiv-trans="yes" state="translated">Cod publicat sub &lt;a
-					href="https://opensource.org/licenses/MIT"&gt;licenta MIT&lt;/a&gt; </target>
-			</trans-unit>
-			<trans-unit id="footer.author" translate="yes" reformat="yes"
-				xml:space="default" size-unit="pixel" approved="no">
-				<source>footer.author</source>
-				<target equiv-trans="yes" state="translated">Creata de &lt;a
-					href="http://mynixworld.info"&gt;Eugen Mihailescu&lt;/a&gt; </target>
-			</trans-unit>
-			<trans-unit id="footer.vendors" translate="yes" reformat="yes"
-				xml:space="default" size-unit="pixel" approved="no">
-				<source>footer.vendors</source>
-				<target equiv-trans="yes" state="translated">Creata cu sprijinul &lt;a
-					href="https://symfony.com"&gt;Symfony Framework&lt;/a&gt;. Tema cu
-					sprijinul &lt;a
-					href="http://bootswatch.com"&gt;Bootswatch&lt;/a&gt;.</target>
-			</trans-unit>
-			<trans-unit id="d7d0dc5d9eaeedc89b1c87bd4a21d1ec" resname="title.login"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>title.login</source>
-				<target equiv-trans="yes" state="translated">Conectare Securizata</target>
-			</trans-unit>
-			<trans-unit id="83c8f6b769170fd9fbd13da3dab0fa66" resname="help.login_users"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>help.login_users</source>
-				<target equiv-trans="yes" state="translated">Incercati unul dintre
-					utilizatorii urmatori
+      </trans-unit>
+      <trans-unit id="bf4b06aff87a1583cca744c66c93b7e3" resname="btn_add">
+        <source>btn_add</source>
+        <target equiv-trans="yes" state="translated">Adauga articol nou</target>
+      </trans-unit>
+      <trans-unit id="e9744063b078083017a5c5f887d32291" resname="btn_shop_top">
+        <source>btn_shop_top</source>
+        <target equiv-trans="yes" state="translated">Aplica</target>
+      </trans-unit>
+      <trans-unit id="df29261e816d5fd3622f44ed1248edaf" resname="show_prefix">
+        <source>show_prefix</source>
+        <target equiv-trans="yes" state="translated">Afiseaza</target>
+      </trans-unit>
+      <trans-unit id="959e6cf0a08acf95da28eed7d5f19726" resname="show_sufix">
+        <source>show_sufix</source>
+        <target equiv-trans="yes" state="translated">rec/pag</target>
+      </trans-unit>
+      <trans-unit id="adde308c0c225548212c43a9bfe186b5" resname="list_of_entities">
+        <source>list_of_entities</source>
+        <target equiv-trans="yes" state="translated">Lista de entitati</target>
+      </trans-unit>
+      <trans-unit id="858454f450fc6a88731518234915dc47" resname="entity_name">
+        <source>entity_name</source>
+        <target equiv-trans="yes" state="translated">Nume entitate</target>
+      </trans-unit>
+      <trans-unit id="36881770228506301cd7ba08f483e2cc" resname="footer.mit_license">
+        <source>footer.mit_license</source>
+        <target equiv-trans="yes" state="translated"><![CDATA[Cod publicat sub <a
+					href="https://opensource.org/licenses/MIT">licenta MIT</a> ]]></target>
+      </trans-unit>
+      <trans-unit id="b1f60fe3c1589e9b3ef57c869c514daa" resname="footer.author">
+        <source>footer.author</source>
+        <target equiv-trans="yes" state="translated"><![CDATA[Creata de <a
+					href="http://mynixworld.info">Eugen Mihailescu</a> ]]></target>
+      </trans-unit>
+      <trans-unit id="0c9e80d9761fe5afd9d8382579b27304" resname="footer.vendors">
+        <source>footer.vendors</source>
+        <target equiv-trans="yes" state="translated"><![CDATA[Creata cu sprijinul <a
+					href="https://symfony.com">Symfony Framework</a>. Tema cu
+					sprijinul <a
+					href="http://bootswatch.com">Bootswatch</a>.]]></target>
+      </trans-unit>
+      <trans-unit id="d7d0dc5d9eaeedc89b1c87bd4a21d1ec" resname="title.login">
+        <source>title.login</source>
+        <target equiv-trans="yes" state="translated">Conectare Securizata</target>
+      </trans-unit>
+      <trans-unit id="83c8f6b769170fd9fbd13da3dab0fa66" resname="help.login_users">
+        <source>help.login_users</source>
+        <target equiv-trans="yes" state="translated">Incercati unul dintre
+					utilizatorii
 				</target>
-			</trans-unit>
-			<trans-unit id="462cc3f86a1fee6c52348107e9dca891" resname="label.role"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>label.role</source>
-				<target equiv-trans="yes" state="translated">Rol</target>
-			</trans-unit>
-			<trans-unit id="d7d9935a52a4e41dd0cbd1e32a2d4c6d" resname="help.role_user"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>help.role_user</source>
-				<target equiv-trans="yes" state="translated">utilizator obisnuit</target>
-			</trans-unit>
-			<trans-unit id="be31f309c74bd604b2622f99a88f434b" resname="help.role_admin"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>help.role_admin</source>
-				<target equiv-trans="yes" state="translated">administrator</target>
-			</trans-unit>
-			<trans-unit id="411d2514756eb7816b1b455dba129810" resname="help.app_description"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>help.app_description</source>
-				<target equiv-trans="yes" state="translated">Aceasta este o
-					&lt;strong&gt;aplicatie demonstrativa&lt;/strong&gt; creata pe
-					platforma Symfony pentru a demonstra puterea aceste minunate
-					platforme. Sunt utilizate urmatoarele module
+      </trans-unit>
+      <trans-unit id="462cc3f86a1fee6c52348107e9dca891" resname="label.role">
+        <source>label.role</source>
+        <target equiv-trans="yes" state="translated">Rol</target>
+      </trans-unit>
+      <trans-unit id="d7d9935a52a4e41dd0cbd1e32a2d4c6d" resname="help.role_user">
+        <source>help.role_user</source>
+        <target equiv-trans="yes" state="translated">utilizator obisnuit</target>
+      </trans-unit>
+      <trans-unit id="be31f309c74bd604b2622f99a88f434b" resname="help.role_admin">
+        <source>help.role_admin</source>
+        <target equiv-trans="yes" state="translated">administrator</target>
+      </trans-unit>
+      <trans-unit id="411d2514756eb7816b1b455dba129810" resname="help.app_description">
+        <source>help.app_description</source>
+        <target equiv-trans="yes" state="translated"><![CDATA[Aceasta este o
+					<strong>aplicatie demo</strong> creata pe
+					platforma
+					Symfony pentru a demonstra puterea aceste minunate
+					platforme. Sunt
+					utilizate urmatoarele module
+				]]></target>
+      </trans-unit>
+      <trans-unit id="f01db44ec90e2028b7791a99651cedf4" resname="help.more_information">
+        <source>help.more_information</source>
+        <target equiv-trans="yes" state="translated"><![CDATA[Pentru informatii
+					suplimentare cititi <a href="http://symfony.com/doc">Symfony
+					doc</a>.]]></target>
+      </trans-unit>
+      <trans-unit id="4236a440a662cc8253d7536e5aa17942" resname="logout">
+        <source>logout</source>
+        <target equiv-trans="yes" state="translated">Deconectare</target>
+      </trans-unit>
+      <trans-unit id="f0e89dc0f6f3257948adce7a5f0d1d46" resname="app.title">
+        <source>app.title</source>
+        <target equiv-trans="yes" state="translated">Aplicatie Demo Symfony
 				</target>
-			</trans-unit>
-			<trans-unit id="f01db44ec90e2028b7791a99651cedf4" resname="help.more_information"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>help.more_information</source>
-				<target equiv-trans="yes" state="translated">Pentru informatii
-					suplimentare cititi &lt;a href="http://symfony.com/doc"&gt;Symfony
-					doc&lt;/a&gt;.</target>
-			</trans-unit>
-			<trans-unit id="4236a440a662cc8253d7536e5aa17942" resname="logout"
-				translate="yes" reformat="yes" xml:space="default" size-unit="pixel"
-				approved="no">
-				<source>logout</source>
-				<target equiv-trans="yes" state="translated">Deconectare</target>
-			</trans-unit>
-			<trans-unit id="app.title" translate="yes" reformat="yes"
-				xml:space="default" size-unit="pixel" approved="no">
-				<source>app.title</source>
-				<target equiv-trans="yes" state="translated">Aplicatie Demo Symfony
+      </trans-unit>
+      <trans-unit id="093911be476390c60a5a1c314a1b6a71" resname="label.error">
+        <source>label.error</source>
+        <target equiv-trans="yes" state="translated">Eroare</target>
+      </trans-unit>
+      <trans-unit id="384f3589d2bb014cd3c2993c4efd2012" resname="label.exception">
+        <source>label.exception</source>
+        <target>Exceptie</target>
+      </trans-unit>
+      <trans-unit id="0a27c33643c4be17075716d3ccdd957d" resname="entity.annotation.error.reason">
+        <source>entity.annotation.error.reason</source>
+        <target><![CDATA[Nu pot determina cheia primara respectiv lista de coloane a entitatii.<br>Clasa `entity.name` nu are definita anotatia <code>@annotation.name</code>.]]></target>
+      </trans-unit>
+      <trans-unit id="3a54203b1b431b7cde534cab13574810" resname="entity.annotation.error.hint">
+        <source>entity.annotation.error.hint</source>
+        <target><![CDATA[Asigura-te ca definesti la nivelul clasei `entity.name` urmatoarea anotatie: <blockquote>@annotation.name(pk="entity-pk", columns={"col1","col2",..})</blockquote>]]></target>
+      </trans-unit>
+      <trans-unit id="e3f557faef88b1ec9d1ce16c43433a35" resname="label.embarrassing">
+        <source>label.embarrassing</source>
+        <target>Ei bine asta este chiar jenant</target>
+      </trans-unit>
+      <trans-unit id="a6cd2576b4c5844bcf320985c21f292e" resname="label.info">
+        <source>label.info</source>
+        <target>Informatie</target>
+      </trans-unit>
+      <trans-unit id="3a2424155ec513fddeb12a918b710c29" resname="info.role.admin">
+        <source>info.role.admin</source>
+        <target><![CDATA[Rolul <code>ROLE_ADMIN</code> faciliteaza accesul deplin la toate functiile aplicatiei (ex. LIST, VIEW, EDIT, DELETE).]]></target>
+      </trans-unit>
+      <trans-unit id="e4167ae3448918a47d583b8d45d08d58" resname="info.role.user">
+        <source>info.role.user</source>
+        <target><![CDATA[The <code>ROLE_USER</code> role restricts the EDIT and DELETE functions.]]></target>
+      </trans-unit>
+      <trans-unit id="11de8a5ed7846ed2f284c37e3cb3459f" resname="help.p1">
+        <source>help.p1</source>
+        <target><![CDATA[<strong>app.title</strong> este o aplicatie demonstrativa pe care am creat-o in timp ce cautam raspunsul la intrebarea ce este <a href="https://symfony.com">Symfony Framework</a> si cum functioneaza.]]></target>
+      </trans-unit>
+      <trans-unit id="38ce48dbc56874633581fad8fd8cad5f" resname="help.p2">
+        <source>help.p2</source>
+        <target>Aceasta ar trebuie considerata ca un cadru de lucru care
+					mi-a permis sa testez|implementez diferite module|bundle ale
+					Symfony:
 				</target>
-			</trans-unit>
-			<trans-unit id="label.error" translate="yes" reformat="yes"
-				xml:space="default" size-unit="pixel" approved="no">
-				<source>label.error</source>
-				<target equiv-trans="yes" state="translated">Eroare</target>
-			</trans-unit>
-			<trans-unit id="label.exception">
-				<source>label.exception</source>
-				<target>Exceptie</target>
-			</trans-unit>
-			<trans-unit id="entity.annotation.error.reason">
-				<source>entity.annotation.error.reason</source>
-				<target><![CDATA[Nu pot determina cheia primara respectiv lista de coloane a entitatii.<br>Clasa `entity.name` nu are definita anotatia <code>@annotation.name</code>.]]></target>
-			</trans-unit>
-			<trans-unit id="entity.annotation.error.hint">
-				<source>entity.annotation.error.hint</source>
-				<target><![CDATA[Asigura-te ca definesti la nivelul clasei `entity.name` urmatoarea anotatie: <blockquote>@annotation.name(pk="entity-pk", columns={"col1","col2",..})</blockquote>]]></target>
-			</trans-unit>
-			<trans-unit id="label.embarrassing">
-				<source>label.embarrassing</source>
-				<target>Ei bine asta este chiar jenant</target>
-			</trans-unit>
-			<trans-unit id="label.info">
-				<source>label.info</source>
-				<target>Informatie</target>
-			</trans-unit>
-			<trans-unit id="info.role.admin">
-				<source>info.role.admin</source>
-				<target><![CDATA[Rolul <code>ROLE_ADMIN</code> faciliteaza accesul deplin la toate functiile aplicatiei (ex. LIST, VIEW, EDIT, DELETE).]]></target>
-			</trans-unit>
-			<trans-unit id="info.role.user">
-				<source>info.role.user</source>
-				<target><![CDATA[The <code>ROLE_USER</code> role restricts the EDIT and DELETE functions.]]></target>
-			</trans-unit>
-		</body>
-	</file>
+      </trans-unit>
+      <trans-unit id="46fb2fac864331809b0920fbc0e25a0f" resname="help.p3">
+        <source>help.p3</source>
+        <target><![CDATA[Daca doresti sa intelegi cum functioneaza atunci te incurajez sa descarci si sa verific <a href="source.url">codul sursa</a>.]]></target>
+      </trans-unit>
+      <trans-unit id="f944079a6dfb8152457d3b6c09869cb5" resname="help.cheerup">
+        <source>help.cheerup</source>
+        <target>Nota de incurajare</target>
+      </trans-unit>
+      <trans-unit id="3c6804425919b1e9082a619b7f7fa651" resname="help.p4">
+        <source>help.p4</source>
+        <target>Curba de invatare a framework-ului Symfony este directa
+					proportionala cu experienta in programare pe care ai pute-o avea
+					deja. Indiferent cat de mult timp ar lua invatarea acesteia , odata
+					incheiat procesul de invatare, crearea unei astfel de aplicatii
+					este doar o chestiune de ore!
+				</target>
+      </trans-unit>
+      <trans-unit id="40be4e59b9a2a2b5dffb918c0e86b3d7" resname="welcome">
+        <source>welcome</source>
+        <target>Bine ati venit la app.title</target>
+      </trans-unit>
+      <trans-unit id="a71d8a3e265dd1cde9f32c640c4e3c4d" resname="label.showtrace">
+        <source>label.showtrace</source>
+        <target>Arata trace-ul</target>
+      </trans-unit>
+      <trans-unit id="1a7f4fd58fe993b066fadb5340d888ab" resname="label.hidetrace">
+        <source>label.hidetrace</source>
+        <target>Ascunde trace-ul</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

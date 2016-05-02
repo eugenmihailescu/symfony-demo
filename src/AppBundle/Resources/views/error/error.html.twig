@@ -15,7 +15,7 @@
 	{% endif %}
 	<p>
 		<a href="#" class="btn btn-primary btn-lg" onclick="history.back()">&larr; {{ 'btn_back'|trans }}</a> 
-	{% if is_exception and app.environment=='dev' %} <span id="show_trace" class="btn btn-primary btn-lg btn-warning"><i class="fa fa-bug" aria-hidden="true"></i> Show Trace</span>
+	{% if is_exception and app.environment=='dev' %} <span id="show_trace" class="btn btn-primary btn-lg btn-warning"><i class="fa fa-bug" aria-hidden="true"></i>{{ 'label.showtrace'|trans }}</span>
 	<div id="trace_popup" class="panel panel-default" style="display: none">
 		<pre class="panel-body" style="background-color: #FFF">{{ trace }}</pre>
 	</div>
@@ -32,11 +32,11 @@
 					var visible=$('#'+$(this).attr('id')+':visible').length,faicon,caption,flip;
 					if(visible){
 						flip='fa-flip-vertical';
-						caption='Hide trace';
+						caption='{{ 'label.hidetrace'|trans }}';
 					}
 					else{
 						flip='';
-						caption='Show trace';
+						caption='{{ 'label.showtrace'|trans }}';
 					}
 					e.html('<i class="fa fa-bug '+flip+'" aria-hidden="true"></i> '+caption);
 			}});

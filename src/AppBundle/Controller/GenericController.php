@@ -5,10 +5,39 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use AppBundle\Annotation\LookupAnnotation;
-use Symfony\Bundle\FrameworkBundle\Templating\PhpEngine;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GenericController extends Controller {
+	/**
+	 * The default entity class name for the current controller
+	 *
+	 * @var string
+	 */
 	private $entity;
+	
+	/**
+	 * The browser accepted language code
+	 *
+	 * @var string
+	 */
+	protected $accepted_lang;
+	
+	
+	/**
+	 * {@inheritDoc}
+	 * @see \Symfony\Component\DependencyInjection\ContainerAwareInterface::setContainer()
+	 */
+	public function setContainer(ContainerInterface $container = null) {
+		parent::setContainer ( $container );
+		
+		$lang_autodetect = $this->get ( 'lang.autodetect' );
+		
+		$this->accepted_lang = null;
+		
+		if ($lang_autodetect) {
+			$this->accepted_lang = $lang_autodetect->getPreferedLanguage ();
+		}
+	}
 	
 	/**
 	 * Checks if the entity exists

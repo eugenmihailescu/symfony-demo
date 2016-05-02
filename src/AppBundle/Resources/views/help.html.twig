@@ -1,27 +1,28 @@
 {% extends 'AppBundle::base.html.twig' %} {% block body %}
 <h1>
-	Welcome to
-	<code>{{ 'app.title'|trans }}</code>
+	{{ 'welcome'|trans({'app.title':'<code>'~'app.title'|trans~'</code>'})|raw }}
 </h1>
 <div id="myTabContent" class="tab-content">
 	<div class="tab-pane fade active in" id="intro">
-		<p>
-			<strong>{{ 'app.title'|trans }}</strong> is a demonstrative
-			application that I created while I read about what is <a
-				href="https://symfony.com">Symfony Framework</a> and how it works.
-		</p>
-		<p>It should be regarded as an working frame which allowed me to
-			test|implement various bundles|modules of Symfony: 
-			{% set symfony_link_class='pager left-aligned' %}
-			{% include '@twig_templates/symfony_links.html.twig' %}</p>
-		<p>
-			If you want to understand how it works then I
-			encourage you checking its <a href="">source code</a>.
-		</p>
-		<div class="panel panel-default" style="display: inline-block;">
-			<div class="panel-body">
-				<span class="label label-info">Cheer up</span>
-				<p>If I would rewrite the whole app again it would probably take only a couple of hours. That is the Symfony way!</p>
+		<div class="panel-body">
+			<p>
+				{{ 'help.p1'|trans({ 'app.title': 'app.title'|trans })|raw }}
+			</p>
+			<p>
+				{{ 'help.p2'|trans }}
+				{% set symfony_link_class='pager left-aligned' %}
+				{% include '@twig_templates/symfony_links.html.twig' %}
+			</p>
+			<p>
+				{{ 'help.p3'|trans({'source.url':'#oops'})|raw }}
+			</p>
+			<div class="panel panel-default" style="display: inline-block;">
+				<div class="panel-body">
+					<span class="label label-info">{{ 'help.cheerup'|trans }}</span>
+					<div class="panel-body">
+					<p>{{ 'help.p4'|trans }}</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

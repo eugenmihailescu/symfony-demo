@@ -29,7 +29,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * }
  * }
  */
-class SecurityController extends Controller {
+class SecurityController extends GenericController {
 	/**
 	 * This is the route the users are redirected when they need to login.
 	 * This will renders the login form.

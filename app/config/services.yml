@@ -35,4 +35,12 @@ services:
     - name: validator.constraint_validator
   app.exception_controller:
     class: AppBundle\Controller\ExceptionController
-    arguments: ['@twig', '%kernel.debug%']    
+    arguments:
+    - '@twig'
+    - '%kernel.debug%'
+  lang.autodetect:
+    class: AppBundle\Services\LanguageDetector
+    arguments:
+    - '%kernel.default_locale%'
+    - '%app_locales%'
+    - '@request_stack'
