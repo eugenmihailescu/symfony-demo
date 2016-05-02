@@ -17,7 +17,7 @@ use AppBundle\Annotation\EntityAnnotation;
  * @ORM\Index(name="type_status_date", columns={"post_type", "post_status", "post_date", "ID"}),
  * @ORM\Index(name="post_parent", columns={"post_parent"}), @ORM\Index(name="post_author", columns={"post_author"})})
  * @ORM\Entity
- * @EntityAnnotation(pk="ID",columns={"postTitle"},alias="articole")
+ * @EntityAnnotation(pk="id",columns={"postTitle"},alias="articole")
  */
 class WptestsPosts {
 	/**
