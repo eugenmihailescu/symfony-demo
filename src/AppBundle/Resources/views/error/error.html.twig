@@ -15,7 +15,7 @@
 	{% endif %}
 	<p>
 		<a href="#" class="btn btn-primary btn-lg" onclick="history.back()">&larr; {{ 'btn_back'|trans }}</a> 
-	{% if is_exception and (app.environment=='dev' or is_granted('ROLE_ADMIN')) %} 
+	{% if (is_exception or status_code=500) and (app.environment=='dev' or is_granted('ROLE_ADMIN')) %} 
 	<span id="show_trace" class="btn btn-primary btn-lg btn-warning"><i class="fa fa-bug" aria-hidden="true"></i>{{ 'label.showtrace'|trans }}</span>
 	<div id="trace_popup" class="panel panel-default" style="display: none">
 		<pre class="panel-body" style="background-color: #FFF">{{ trace }}</pre>
