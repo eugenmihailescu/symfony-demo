@@ -6,15 +6,15 @@
 {{ flash_message }}
 </div>
 {% endfor %}
-<ul class="pager">
-	<li><a href="{{ routes.back }}">&larr; {{ 'btn_cancel'|trans }}</a></li>
+
+<a href="{{ routes.back }}"><button class="btn btn-default">&larr; {{ 'btn_cancel'|trans }}</button></a>
 {% if is_readonly %}
-	<li><a href="{{ routes.edit }}">{{ 'btn_edit'|trans }}</a></li>
-	<li><a href="#" id="btn_delete_confirm">{{ 'btn_delete'|trans }}</a></li>
+	<a href="{{ routes.edit }}"><button class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ 'btn_edit'|trans }}</button></a>
+	<a href="#" id="btn_delete_confirm"><button class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ 'btn_delete'|trans }}</button></a>
 {% else %}	
-	<li><input type="submit" form="{{ form_id }}" value="{{ 'btn_save'|trans }}" class="btn btn-sm btn-success"></li>
+	<input type="submit" form="{{ form_id }}" value="{{ 'btn_save'|trans }}" class="btn btn-success">
 {% endif %}
-</ul>
+
 {{ form_start(form) }}
 <fieldset>
 		<legend>{{ 'post_details'|trans }} (pk:{{ id }})</legend>

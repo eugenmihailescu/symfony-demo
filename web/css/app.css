@@ -17,14 +17,21 @@ html, body {
 
 /* FORM */
 .form-control {
-	height: auto;
+	height: 100% !important;
 }
 
 .form-control:focus:required {
 	border: 2px solid #E74C3C;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075);
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, rgba(0, 0, 0, 0.075))";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135,
+		Color=rgba(0, 0, 0, 0.075));
 }
 
+}
 .form-horizontal table td:last-child {
 	color: #E74C3C;
 }
@@ -40,7 +47,7 @@ header {
 /* FOOTER */
 footer {
 	height: 124px;
-	background: #ECF0F1 none repeat scroll 0% 0%;
+	background-color: #ECF0F1;
 	margin-top: 2em;
 	padding-top: 2em;
 	padding-bottom: 2em;
@@ -99,6 +106,12 @@ footer #footer-resources i {
 
 .block-shadow {
 	box-shadow: 0px 5px 10px;
+	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.075);
+	-webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.075);
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135, rgba(0, 0, 0, 0.075))";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=135,
+		Color=rgba(0, 0, 0, 0.075));
 }
 
 /* MISCELLANEOUS */
