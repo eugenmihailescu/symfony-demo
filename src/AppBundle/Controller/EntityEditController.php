@@ -13,7 +13,8 @@ class EntityEditController extends GenericController {
 		$buttons = array (
 				'back' => $this->generateUrl ( 'view_entity', array (
 						'entity' => $entity,
-						'id' => $pk 
+						'id' => $pk,
+						'_theme' => $this->getCurrentTheme () 
 				) ) 
 		);
 		

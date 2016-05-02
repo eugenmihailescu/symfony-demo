@@ -8,6 +8,8 @@ imports:
 parameters:
     locale: en
     app_locales: en|sv|ro
+    theme: flatly
+    themes_path: "%kernel.root_dir%/../web/assets/vendor/bootswatch/"
     recs_per_page: 10
     first_page: 1
 
@@ -45,7 +47,6 @@ twig:
     exception_controller:  "app.exception_controller:showAction"
     paths: 
       "%kernel.root_dir%/../src/AppBundle/Resources/views": twig_templates
-      
 
 # Doctrine Configuration
 doctrine:

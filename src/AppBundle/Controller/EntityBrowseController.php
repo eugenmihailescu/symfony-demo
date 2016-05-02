@@ -18,11 +18,11 @@ final class EntityBrowseController extends GenericController {
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function browseEntityAction($entity, $page, $limit) {
-		$this->setEntity($entity);
+		$this->setEntity ( $entity );
 		
 		$post_repository = $this->getDoctrine ()->getRepository ( 'AppBundle:' . $entity );
 		
-		$em = $this->get('doctrine.orm.entity_manager');
+		$em = $this->get ( 'doctrine.orm.entity_manager' );
 		
 		$persister = $em->getUnitOfWork ()->getEntityPersister ( 'AppBundle:' . $entity );
 		
@@ -34,7 +34,7 @@ final class EntityBrowseController extends GenericController {
 		
 		$templating = $this->get ( 'templating' );
 		
-		$annotation = $this->getEntityAnnotations (  'AppBundle\Annotation\EntityAnnotation' );
+		$annotation = $this->getEntityAnnotations ( 'AppBundle\Annotation\EntityAnnotation' );
 		
 		if ($annotation) {
 			$columns = array_merge ( array (
@@ -64,16 +64,21 @@ final class EntityBrowseController extends GenericController {
 					'limit' => $limit,
 					'routes' => array (
 							'browse' => $this->generateUrl ( 'browse_entity', array (
-									'entity' => $entity 
+									'entity' => $entity,
+									'_theme' => $this->getCurrentTheme () 
 							) ),
 							// the record-specific route is rendered inside template
 							'grid' => $this->generateUrl ( 'view_entity', array (
-									'entity' => $entity 
+									'entity' => $entity,
+									'_theme' => $this->getCurrentTheme () 
 							) ) . '/',
 							'insrec' => $this->generateUrl ( 'edit_entity', array (
-									'entity' => $entity 
+									'entity' => $entity,
+									'_theme' => $this->getCurrentTheme () 
 							) ),
-							'back' => $this->generateUrl ( 'entities_list' ) 
+							'back' => $this->generateUrl ( 'entities_list', array (
+									'_theme' => $this->getCurrentTheme () 
+							) ) 
 					) 
 			) );
 		} else {

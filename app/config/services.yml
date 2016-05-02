@@ -10,6 +10,8 @@ services:
     class: AppBundle\Twig\AppExtension
     arguments:
     - '%app_locales%'
+    - '%themes_path%'
+    - '@request_stack'
     tags:
     - name: twig.extension
   app.twig.intl_extension:
@@ -23,6 +25,7 @@ services:
     - '@router'
     - '%app_locales%'
     - '%locale%'
+    - '%theme%'
     tags:
     - name: kernel.event_listener
       event: kernel.request

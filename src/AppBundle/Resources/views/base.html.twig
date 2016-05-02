@@ -4,15 +4,17 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}Welcome!{% endblock %}</title>
+	{% set theme=current_theme() %}
 	{% block stylesheets %}
             {% stylesheets output="css/app.css"
             	"assets/vendor/bootstrap/dist/css/bootstrap.min.css"
             	"assets/vendor/font-awesome/css/font-awesome.min.css"
-            	"assets/vendor/bootswatch/flatly/bootstrap.min.css"
             	"bundles/app/css/*.css"
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
+            
+            <link rel="stylesheet" href="{{ asset("assets/vendor/bootswatch/"~theme~"/bootstrap.min.css" ) }}" />
         	 
 	{% endblock %}
 	{% block head_javascripts %}
@@ -45,5 +47,6 @@
 	<script src="{{ asset_url }}"></script>
 	{% endjavascripts %} 
 	{% endblock %}
+	<input type="hidden" name="_theme" value="{{ theme }}">
 </body>
 </html>

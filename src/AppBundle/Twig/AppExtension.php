@@ -3,6 +3,7 @@
 namespace AppBundle\Twig;
 
 use Symfony\Component\Intl\Intl;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class AppExtension extends \Twig_Extension {
 	
@@ -11,8 +12,31 @@ class AppExtension extends \Twig_Extension {
 	 * @var array
 	 */
 	private $locales;
-	public function __construct($locales) {
+	
+	/**
+	 *
+	 * @var string
+	 */
+	private $themes_path;
+	
+	/**
+	 *
+	 * @var RequestStack
+	 */
+	private $request_stack;
+	
+	/**
+	 * Constructor
+	 *
+	 * @param array $locales        	
+	 * @param RequestStack $request_stack        	
+	 */
+	public function __construct($locales, $themes_path, RequestStack $request_stack) {
 		$this->locales = $locales;
+		
+		$this->themes_path = $themes_path;
+		
+		$this->request_stack = $request_stack;
 	}
 	
 	/**
@@ -25,6 +49,14 @@ class AppExtension extends \Twig_Extension {
 				new \Twig_SimpleFunction ( 'locales', array (
 						$this,
 						'getLocales' 
+				) ),
+				new \Twig_SimpleFunction ( 'current_theme', array (
+						$this,
+						'getCurrentTheme' 
+				) ),
+				new \Twig_SimpleFunction ( 'installed_themes', array (
+						$this,
+						'getInstalledThemes' 
 				) ) 
 		);
 	}
@@ -49,6 +81,25 @@ class AppExtension extends \Twig_Extension {
 		}
 		
 		return $locales;
+	}
+	/**
+	 * Return the current them
+	 *
+	 * @return string
+	 */
+	public function getCurrentTheme() {
+		$request = $this->request_stack->getCurrentRequest ();
+		
+		return $request->attributes->get ( '_theme' );
+	}
+	
+	/**
+	 * Returns the installed themes
+	 * 
+	 * @return array
+	 */
+	public function getInstalledThemes() {
+		return array_map ( 'basename', glob ( $this->themes_path . '*', GLOB_ONLYDIR ) );
 	}
 	
 	/**

@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use AppBundle\Annotation\LookupAnnotation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Request as Request;
 
 class GenericController extends Controller {
 	/**
@@ -22,9 +24,10 @@ class GenericController extends Controller {
 	 */
 	protected $accepted_lang;
 	
-	
 	/**
+	 *
 	 * {@inheritDoc}
+	 *
 	 * @see \Symfony\Component\DependencyInjection\ContainerAwareInterface::setContainer()
 	 */
 	public function setContainer(ContainerInterface $container = null) {
@@ -296,6 +299,11 @@ class GenericController extends Controller {
 	 */
 	protected function isTokenValid($token, $id = null) {
 		return $this->isCsrfTokenValid ( $this->getTokenId ( $id ), $token );
+	}
+	protected function getCurrentTheme() {
+		$request = $this->container->get ( 'request_stack' )->getCurrentRequest ();
+		
+		return $request->attributes->get ( '_theme' );
 	}
 	
 	/**

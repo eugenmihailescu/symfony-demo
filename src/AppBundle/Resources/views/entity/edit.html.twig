@@ -12,7 +12,7 @@
 	<li><a href="{{ routes.edit }}">{{ 'btn_edit'|trans }}</a></li>
 	<li><a href="#" id="btn_delete_confirm">{{ 'btn_delete'|trans }}</a></li>
 {% else %}	
-	<li><input type="submit" form="{{ form_id }}" value="{{ 'btn_save'|trans }}" style="color: #FFF;display: inline-block;padding: 5px 14px;background-color: #18BC9C;border: 1px solid transparent;border-radius: 15px;"></li>
+	<li><input type="submit" form="{{ form_id }}" value="{{ 'btn_save'|trans }}" class="btn btn-sm btn-success"></li>
 {% endif %}
 </ul>
 {{ form_start(form) }}

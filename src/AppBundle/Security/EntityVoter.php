@@ -15,6 +15,13 @@ class EntityVoter extends Voter {
 	const EDIT = 'edit';
 	const DELETE = 'delete';
 	const LIST = 'list';
+	
+	/**
+	 * The number of URL's path parts that must be read in order to get to the entity name part
+	 *
+	 * @var integer
+	 */
+	const ENTITY_PATH_LEVEL = 5;
 	private $entity = null;
 	private $can_edit = null;
 	private $can_view = null;
@@ -35,14 +42,14 @@ class EntityVoter extends Voter {
 		$matches = null;
 		
 		// check if the current route is either a edit|view|delete route
-		if (! preg_match ( '/((\/[a-z]\w*){4}(\/\d+)*)/i', $uri, $matches )) {
+		if (! preg_match ( '/((\/[a-z]\w*){' . self::ENTITY_PATH_LEVEL . '}(\/\d+)*)/i', $uri, $matches )) {
 			return;
 		}
 		
 		// retrieve the metadata from current route entity
 		$parts = explode ( '/', $matches [0] );
 		
-		$this->entity = 'AppBundle\Entity\\' . $parts [4];
+		$this->entity = 'AppBundle\Entity\\' . $parts [self::ENTITY_PATH_LEVEL];
 		
 		$annotations = $this->getEntityAnnotations ( $this->entity, 'AppBundle\Annotation\EntityAnnotation' );
 		

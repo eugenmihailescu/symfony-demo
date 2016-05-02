@@ -60,9 +60,12 @@ final class EntityListController extends GenericController {
 				'page' => $page,
 				'limit' => $limit,
 				'routes' => array (
-						'browse' => $this->generateUrl ( 'entities_list' ),
+						'browse' => $this->generateUrl ( 'entities_list', array (
+								'_theme' => $this->getCurrentTheme () 
+						) ),
 						'grid' => $this->generateUrl ( 'browse_entity', array (
-								'entity' => '' 
+								'entity' => '',
+								'_theme' => $this->getCurrentTheme () 
 						) ) 
 				),
 				'columns' => $grid_columns 

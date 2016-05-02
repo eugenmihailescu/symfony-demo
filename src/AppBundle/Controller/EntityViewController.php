@@ -9,15 +9,18 @@ final class EntityViewController extends EntityEditController {
 	protected function getButtons($entity, $pk) {
 		$buttons = array (
 				'back' => $this->generateUrl ( 'browse_entity', array (
-						'entity' => $entity 
+						'entity' => $entity,
+						'_theme' => $this->getCurrentTheme () 
 				) ),
 				'edit' => $this->generateUrl ( 'edit_entity', array (
 						'entity' => $entity,
-						'id' => $pk 
+						'id' => $pk,
+						'_theme' => $this->getCurrentTheme () 
 				) ),
 				'delete' => $this->generateUrl ( 'delete_entity', array (
 						'entity' => $entity,
-						'id' => $pk 
+						'id' => $pk,
+						'_theme' => $this->getCurrentTheme () 
 				) ) 
 		);
 		

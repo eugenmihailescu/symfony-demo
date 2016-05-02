@@ -1,33 +1,36 @@
 app:
   resource: '@AppBundle/Controller/'
   type: annotation
-  prefix: /{_locale}/
+  prefix: /{_locale}/{_theme}/
   requirements:
     _locale: '%app_locales%'
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
 homepage:
-  path: /{_locale}
+  path: /{_locale}/{_theme}
   requirements:
     _locale: '%app_locales%'
   defaults:
     _controller: AppBundle:EntityList:browseEntities
     _locale: '%locale%'
+    _theme: '%theme%'
     page: '%first_page%'
     limit: '%recs_per_page%'
 entities_list:
-  path: /{_locale}/entities/browse/{page}/{limit}
+  path: /{_locale}/{_theme}/entities/browse/{page}/{limit}
   requirements:
     _locale: '%app_locales%'
     page: '[1-9]\d*'
     limit: '[1-9]\d*'
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
     _controller: AppBundle:EntityList:browseEntities
     page: '%first_page%'
     limit: '%recs_per_page%'
 browse_entity:
-  path: /{_locale}/entity/browse/{entity}/{page}/{limit}
+  path: /{_locale}/{_theme}/entity/browse/{entity}/{page}/{limit}
   requirements:
     _locale: '%app_locales%'
     page: '[1-9]\d*'
@@ -35,29 +38,32 @@ browse_entity:
     entity: ([a-zA-Z][\w\d$_]*)?
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
     _controller: AppBundle:EntityBrowse:browseEntity
     page: '%first_page%'
     limit: '%recs_per_page%'
 view_entity:
-  path: /{_locale}/entity/view/{entity}/{id}
+  path: /{_locale}/{_theme}/entity/view/{entity}/{id}
   requirements:
     _locale: '%app_locales%'
     entity: '[a-zA-Z][\w\d$_]*'
     id: \d+
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
     _controller: AppBundle:EntityView:viewEntity
     id: 0
   methods:
   - GET
 edit_entity:
-  path: /{_locale}/entity/edit/{entity}/{id}/{success}
+  path: /{_locale}/{_theme}/entity/edit/{entity}/{id}/{success}
   requirements:
     _locale: '%app_locales%'
     entity: '[a-zA-Z][\w\d$_]*'
     id: \d+
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
     _controller: AppBundle:EntityEdit:editEntity
     success: null
     id: -1
@@ -65,22 +71,26 @@ edit_entity:
   - POST
   - GET
 delete_entity:
-  path: /{_locale}/entity/delete/{entity}/{id}
+  path: /{_locale}/{_theme}/entity/delete/{entity}/{id}
   requirements:
     _locale: '%app_locales%'
     entity: '[a-zA-Z][\w\d$_]*'
     id: \d+
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
     _controller: AppBundle:Generic:deleteEntity
   methods:
   - GET
 help:
-  path: /{_locale}/help
+  path: /{_locale}/{_theme}/help
+  requirements:
+    _locale: '%app_locales%'
   defaults:
     _locale: '%locale%'
+    _theme: '%theme%'
     _controller: FrameworkBundle:Template:template
-    template: "@twig_templates/help.html.twig"  
+    template: '@twig_templates/help.html.twig'
 pageNotFound:
   path: /{path}
   defaults:
