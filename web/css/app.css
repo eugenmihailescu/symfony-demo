@@ -73,7 +73,7 @@ footer #footer-resources i {
 }
 
 /* Portrait and Landscape */
-@media ( max-height : 320px) {
+@media screen and ( max-height : 320px) {
 	footer {
 		display: none;
 	}
