@@ -27,6 +27,7 @@ $_VERBOSITY_ = true;
  * @var string $_COMPOSER_BIN_
  */
 $_COMPOSER_BIN_ = __DIR__ . '/composer.phar';
+is_file ( $_COMPOSER_BIN_ ) || $_COMPOSER_BIN_ = exec ( 'which composer' );
 
 /**
  * The path to the Symfony bin/console application script

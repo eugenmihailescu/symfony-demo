@@ -17,11 +17,22 @@ function _rmdir($dir) {
 }
 
 /**
+ * Updates the dependencies according to composer.json
+ */
+function composer_update() {
+	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_composer ( 'update', array (
+			'optimize-autoloader' => null,
+			'no-interaction' => null 
+	) ) );
+}
+
+/**
  * Installs the Composer required components
  */
 function composer_install() {
 	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_composer ( 'install', array (
-			'optimize-autoloader' => null 
+			'optimize-autoloader' => null,
+			'no-interaction' => null 
 	) ) );
 }
 
@@ -111,6 +122,7 @@ function move_vendor_assets() {
 }
 
 // register our custom hooks
+SymfonyShell\register_hook ( 'composer_update' ); // make sure the dependencies are up-to-date
 SymfonyShell\register_hook ( 'composer_install' ); // install the required dependencies as per composer.json
 SymfonyShell\register_hook ( 'move_vendor_assets' ); // should be registered before `symfony_dump_assets` hook
 SymfonyShell\register_hook ( 'symfony_cache_clear' ); // clear the default (production) cache
