@@ -13,6 +13,7 @@ services:
     - '%themes_search_pattern%'
     - '%themes_root%'
     - '%theme_css%'
+    - '%default_theme%'
     - '@request_stack'
     tags:
     - name: twig.extension
@@ -27,7 +28,7 @@ services:
     - '@router'
     - '%app_locales%'
     - '%locale%'
-    - '%theme%'
+    - '%default_theme%'
     tags:
     - name: kernel.event_listener
       event: kernel.request

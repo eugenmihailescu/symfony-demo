@@ -26,7 +26,7 @@ class ExceptionController extends ExceptionController {
 				'file' => $exception->getFile (),
 				'lineno' => $exception->getLine (),
 				'exception' => $exception,
-				'trace' => print_r($exception->getTrace (),1),
+				'trace' => print_r ( $exception->getTrace (), 1 ),
 				'logger' => $logger,
 				'currentContent' => $currentContent 
 		) ) );

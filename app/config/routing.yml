@@ -6,7 +6,7 @@ app:
     _locale: '%app_locales%'
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
 homepage:
   path: /{_locale}/{_theme}
   requirements:
@@ -14,7 +14,7 @@ homepage:
   defaults:
     _controller: AppBundle:EntityList:browseEntities
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     page: '%first_page%'
     limit: '%recs_per_page%'
 entities_list:
@@ -25,7 +25,7 @@ entities_list:
     limit: '[1-9]\d*'
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     _controller: AppBundle:EntityList:browseEntities
     page: '%first_page%'
     limit: '%recs_per_page%'
@@ -38,7 +38,7 @@ browse_entity:
     entity: ([a-zA-Z][\w\d$_]*)?
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     _controller: AppBundle:EntityBrowse:browseEntity
     page: '%first_page%'
     limit: '%recs_per_page%'
@@ -50,7 +50,7 @@ view_entity:
     id: \d+
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     _controller: AppBundle:EntityView:viewEntity
     id: 0
   methods:
@@ -63,7 +63,7 @@ edit_entity:
     id: \d+
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     _controller: AppBundle:EntityEdit:editEntity
     success: null
     id: -1
@@ -78,7 +78,7 @@ delete_entity:
     id: \d+
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     _controller: AppBundle:Generic:deleteEntity
   methods:
   - GET
@@ -88,7 +88,7 @@ help:
     _locale: '%app_locales%'
   defaults:
     _locale: '%locale%'
-    _theme: '%theme%'
+    _theme: '%default_theme%'
     _controller: FrameworkBundle:Template:template
     template: '@twig_templates/help.html.twig'
 pageNotFound:

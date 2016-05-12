@@ -8,7 +8,7 @@ imports:
 parameters:
     locale: en
     app_locales: en|sv|ro
-    theme: flatly
+    default_theme: flatly
     theme_css: "bootstrap.min.css"
     themes_root: "bundles/vendor/bower-asset/bootswatch"
     themes_search_pattern: "%kernel.root_dir%/../web/%themes_root%/*/%theme_css%"

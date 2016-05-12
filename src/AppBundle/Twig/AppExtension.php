@@ -34,6 +34,12 @@ class AppExtension extends \Twig_Extension {
 	
 	/**
 	 *
+	 * @var string
+	 */
+	private $default_theme;
+	
+	/**
+	 *
 	 * @var RequestStack
 	 */
 	private $request_stack;
@@ -44,10 +50,11 @@ class AppExtension extends \Twig_Extension {
 	 * @param array $locales        	
 	 * @param string $themes_search_pattern        	
 	 * @param string $themes_root        	
-	 * @param string $theme_css        	
+	 * @param string $theme_css
+	 *        	@oaram string $default_theme
 	 * @param RequestStack $request_stack        	
 	 */
-	public function __construct($locales, $themes_search_pattern, $themes_root, $theme_css, RequestStack $request_stack) {
+	public function __construct($locales, $themes_search_pattern, $themes_root, $theme_css, $default_theme, RequestStack $request_stack) {
 		$this->locales = $locales;
 		
 		$this->themes_search_pattern = $themes_search_pattern;
@@ -55,6 +62,8 @@ class AppExtension extends \Twig_Extension {
 		$this->themes_root = $themes_root;
 		
 		$this->theme_css = $theme_css;
+		
+		$this->default_theme = $default_theme;
 		
 		$this->request_stack = $request_stack;
 	}
@@ -113,6 +122,18 @@ class AppExtension extends \Twig_Extension {
 	 */
 	public function getCurrentTheme() {
 		$request = $this->request_stack->getCurrentRequest ();
+		
+		// in case the _theme is not sent the try to parse it from request URI
+		if (! $request->attributes->has ( '_theme' ) || empty ( $request->attributes->get ( '_theme' ) )) {
+			$matches = null;
+			
+			if (preg_match ( '/(\.php)?\/\w+\/(\w+).*/i', $request->server->get ( 'REQUEST_URI' ), $matches ))
+				// is the found theme among the installed themes?
+				if (in_array ( $matches [2], $this->getInstalledThemes () ))
+					return $matches [2];
+			
+			return $this->default_theme;
+		}
 		
 		return $request->attributes->get ( '_theme' );
 	}
