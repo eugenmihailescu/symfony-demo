@@ -30,11 +30,11 @@
 		"twig/extensions" : "~1.2",
 		"symfony/monolog-bundle" : "^2.11",
 		"bower-asset/bootswatch" : "3.3.*",
-		"bower-asset/font-awesome" : "4.6.*"
+		"bower-asset/font-awesome" : "4.6.*",
+		"sensio/generator-bundle" : "^3.0"
 	},
 	"require-dev" : {
-		"symfony/phpunit-bridge" : "^3.0",
-		"sensio/generator-bundle" : "^3.0"
+		"symfony/phpunit-bridge" : "^3.0"
 	},
 	"scripts" : {
 		"post-install-cmd" : [
