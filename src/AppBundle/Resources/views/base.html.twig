@@ -6,24 +6,14 @@
 	<title>{% block title %}Welcome!{% endblock %}</title>
 	{% set theme=current_theme() %}
 	{% block stylesheets %}
-            {% stylesheets output="css/app.css"
-            	"assets/vendor/bootstrap/dist/css/bootstrap.min.css"
-            	"assets/vendor/font-awesome/css/font-awesome.min.css"
-            	"bundles/app/css/*.css"
-            %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% stylesheets filter='cssrewrite' '@app_css' '@fa_css' %}
+                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
             {% endstylesheets %}
-            
-            <link rel="stylesheet" href="{{ asset("assets/vendor/bootswatch/"~theme~"/bootstrap.min.css" ) }}" />
-        	 
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset(current_theme_css()) }}" />
 	{% endblock %}
 	{% block head_javascripts %}
-	{% javascripts 
-		'assets/vendor/jQuery/dist/*.min.js'
-		'assets/vendor/bootstrap/dist/js/bootstrap.min.js'
-		output='js/compiled/header.js'
-	%}
-	<script src="{{ asset_url }}"></script>
+	{% javascripts '@jquery' '@bootstrap_js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 	{% endblock %}
 	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -41,10 +31,7 @@
 	{% endblock %}	 
 	
 	{% block footer_javascripts %} 
-	{% javascripts
-	'bundles/app/js/*'
-	output='js/compiled/app.js' %}
-	<script src="{{ asset_url }}"></script>
+	{% javascripts %}
 	{% endjavascripts %} 
 	{% endblock %}
 	<input type="hidden" name="_theme" value="{{ theme }}">

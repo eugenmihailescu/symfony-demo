@@ -4,6 +4,7 @@ namespace AppBundle\Twig;
 
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class AppExtension extends \Twig_Extension {
 	
@@ -17,7 +18,19 @@ class AppExtension extends \Twig_Extension {
 	 *
 	 * @var string
 	 */
-	private $themes_path;
+	private $themes_search_pattern;
+	
+	/**
+	 *
+	 * @var string
+	 */
+	private $themes_root;
+	
+	/**
+	 *
+	 * @var unknown
+	 */
+	private $theme_css;
 	
 	/**
 	 *
@@ -29,12 +42,19 @@ class AppExtension extends \Twig_Extension {
 	 * Constructor
 	 *
 	 * @param array $locales        	
+	 * @param string $themes_search_pattern        	
+	 * @param string $themes_root        	
+	 * @param string $theme_css        	
 	 * @param RequestStack $request_stack        	
 	 */
-	public function __construct($locales, $themes_path, RequestStack $request_stack) {
+	public function __construct($locales, $themes_search_pattern, $themes_root, $theme_css, RequestStack $request_stack) {
 		$this->locales = $locales;
 		
-		$this->themes_path = $themes_path;
+		$this->themes_search_pattern = $themes_search_pattern;
+		
+		$this->themes_root = $themes_root;
+		
+		$this->theme_css = $theme_css;
 		
 		$this->request_stack = $request_stack;
 	}
@@ -57,6 +77,10 @@ class AppExtension extends \Twig_Extension {
 				new \Twig_SimpleFunction ( 'installed_themes', array (
 						$this,
 						'getInstalledThemes' 
+				) ),
+				new \Twig_SimpleFunction ( 'current_theme_css', array (
+						$this,
+						'getThemeCSS' 
 				) ) 
 		);
 	}
@@ -95,11 +119,20 @@ class AppExtension extends \Twig_Extension {
 	
 	/**
 	 * Returns the installed themes
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getInstalledThemes() {
-		return array_map ( 'basename', glob ( $this->themes_path . '*', GLOB_ONLYDIR ) );
+		return array_map ( 'basename', array_map ( 'dirname', glob ( $this->themes_search_pattern ) ) );
+	}
+	
+	/**
+	 * Returns the themes root global parameter
+	 *
+	 * @return string
+	 */
+	public function getThemeCSS() {
+		return $this->themes_root . '/' . $this->getCurrentTheme () . '/' . $this->theme_css;
 	}
 	
 	/**
