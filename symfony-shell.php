@@ -163,8 +163,10 @@ function run_composer($composer_cmd, $composer_args = array(), $return_output = 
 	$args = array (
 			'items' => $composer_args 
 	);
+	$home = getenv ( 'HOME' ) . '/.composer';
+	
 	$env = array (
-			'COMPOSER_HOME' => __DIR__ 
+			'COMPOSER_HOME' => is_dir ( $home ) ? $home : __DIR__ 
 	);
 	
 	return exec_cmd ( sprintf ( '%s %s', escapeshellcmd ( $_COMPOSER_BIN_ ), escapeshellcmd ( $composer_cmd ) ), $args, __DIR__, $env, $return_output );
