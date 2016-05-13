@@ -10,7 +10,7 @@ parameters:
     app_locales: en|sv|ro
     default_theme: flatly
     theme_css: "bootstrap.min.css"
-    themes_root: "bundles/vendor/bower-asset/bootswatch"
+    themes_root: "bundles/vendor/thomaspark/bootswatch"
     themes_search_pattern: "%kernel.root_dir%/../web/%themes_root%/*/%theme_css%"
     recs_per_page: 10
     first_page: 1
