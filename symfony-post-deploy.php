@@ -8,7 +8,7 @@ require_once 'symfony-shell.php';
  * @param string $dst        	
  * @return bool Returns true on success, false otherwise
  */
-function _copy($src, $dst, $mode = 0770) {
+function _copy($src, $dst, $mode = 0755) {
 	$success = true;
 	
 	if (is_dir ( $src )) {
@@ -172,8 +172,7 @@ function copy_vendor_assets($src, $dst) {
 	};
 	
 	if (is_dir ( __DIR__ . $src )) {
-		$stat = stat ( __DIR__ . $src ); // get file info
-		if ($result = _copy ( __DIR__ . $src, __DIR__ . $dst, $stat ? $stat [2] : 0770 ))
+		if ($result = _copy ( __DIR__ . $src, __DIR__ . $dst ))
 			$echo ( sprintf ( 'Folder %s copied successfully to %s', $src, $dst ) );
 		else {
 			$sys_err = error_get_last ();
