@@ -29,7 +29,7 @@ function _copy($src, $dst, $mode = 0770) {
 /**
  * Installs the Composer required components
  *
- * @return int Returns the command execution exit code
+ * @return bool Returns true on success, false otherwise
  */
 function composer_install() {
 	$output = SymfonyShell\run_composer ( 'install', array (
@@ -38,7 +38,7 @@ function composer_install() {
 	) );
 	SymfonyShell\echoTerminaCmd ( $output );
 	
-	return $output [4]; // returns the cmd exec exit code
+	return ! $output [4]; // returns the cmd exec exit code
 }
 
 /**
@@ -46,7 +46,7 @@ function composer_install() {
  *
  * @param string $environment
  *        	The Symfony environments (eg. dev, prod, etc)
- * @return int Returns the command execution exit code
+ * @return bool Returns true on success, false otherwise
  */
 function symfony_dump_assets($environment = 'prod') {
 	$output = SymfonyShell\run_symfony_console ( 'assetic:dump', array (
@@ -55,7 +55,7 @@ function symfony_dump_assets($environment = 'prod') {
 	) );
 	SymfonyShell\echoTerminaCmd ( $output );
 	
-	return $output [4]; // returns the cmd exec exit code
+	return ! $output [4]; // returns the cmd exec exit code
 }
 
 /**
@@ -63,7 +63,7 @@ function symfony_dump_assets($environment = 'prod') {
  *
  * @param string $environment
  *        	The Symfony environment (eg. prod,dev,tests)
- * @return int Returns the command execution exit code
+ * @return bool Returns true on success, false otherwise
  */
 function symfony_cache_clear($environment = 'prod') {
 	$output = SymfonyShell\run_symfony_console ( 'cache:clear', array (
@@ -73,7 +73,7 @@ function symfony_cache_clear($environment = 'prod') {
 	
 	SymfonyShell\echoTerminaCmd ( $output );
 	
-	return $output [4]; // returns the cmd exec exit code
+	return ! $output [4]; // returns the cmd exec exit code
 }
 /**
  * Install the bundle assets to the public (eg.
@@ -85,7 +85,7 @@ function symfony_cache_clear($environment = 'prod') {
  *        	When true symlinks the assets otherwise copy them
  * @param string $relative
  *        	When true make relative symlinks
- * @return int Returns the command execution exit code
+ * @return bool Returns true on success, false otherwise
  */
 function symfony_assets_install($environment = 'prod', $symlink = false, $relative = false) {
 	$args = array (
@@ -100,7 +100,7 @@ function symfony_assets_install($environment = 'prod', $symlink = false, $relati
 	
 	SymfonyShell\echoTerminaCmd ( $output );
 	
-	return $output [4]; // returns the cmd exec exit code
+	return ! $output [4]; // returns the cmd exec exit code
 }
 
 /**
