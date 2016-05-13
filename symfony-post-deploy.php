@@ -107,7 +107,8 @@ function copy_vendor_assets() {
 		) );
 	};
 	
-	if (_copy ( $src, $dst, fileperms ( $src ) ))
+	$stat = stat ( $src );// get file info
+	if (_copy ( $src, $dst, $stat [2] ))
 		$echo ( sprintf ( 'Folder %s copied successfully to %s', str_replace ( __DIR__, '', $src ), str_replace ( __DIR__, '', $dst ) ) );
 	else {
 		$sys_err = error_get_last ();
