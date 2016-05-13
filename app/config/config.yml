@@ -102,41 +102,41 @@ assetic:
           - %kernel.root_dir%/../web/bundles/app/css/my-style.css
       bootstrap_js:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/bootstrap/dist/js/bootstrap.min.js
+          - %kernel.root_dir%/../web/bundles/vendor/thomaspark/bootswatch/2/js/bootstrap.js
       jquery:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/jquery/jquery.min.js
+          - %kernel.root_dir%/../web/bundles/vendor/thomaspark/bootswatch/2/bower_components/jquery/jquery.min.js
       fa_css:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/css/font-awesome.min.css
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/css/font-awesome.min.css
       fa_eot:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/fonts/fontawesome-webfont.eot
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.eot
         output:
           "fonts/fontawesome-webfont.eot"
       fa_svg:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/fonts/fontawesome-webfont.svg
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.svg
         output:
           "fonts/fontawesome-webfont.svg"
       fa_ttf:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/fonts/fontawesome-webfont.ttf
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.ttf
         output:
           "fonts/fontawesome-webfont.ttf"
       fa_woff:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/fonts/fontawesome-webfont.woff
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff
         output:
           "fonts/fontawesome-webfont.woff"
       fa_woff2:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/fonts/fontawesome-webfont.woff2
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff2
         output:
           "fonts/fontawesome-webfont.woff2"
       fa_otf:
         inputs:
-          - %kernel.root_dir%/../web/bundles/vendor/bower-asset/font-awesome/fonts/FontAwesome.otf
+          - %kernel.root_dir%/../web/bundles/vendor/fortawesome/font-awesome/fonts/FontAwesome.otf
         output:
           "fonts/fontawesome-webfont.otf"
           

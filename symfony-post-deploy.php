@@ -149,9 +149,11 @@ function symfony_assets_install($environment = 'prod', $symlink = false, $relati
 /**
  * This is a custom hook that has nothing to do with Composer/Symfony
  *
+ * @param string $src        	
+ * @param string $dst        	
  * @return bool Returns true on success, false otherwise
  */
-function copy_vendor_assets() {
+function copy_vendor_assets($src, $dst) {
 	$dir = '/vendor/bower-asset/';
 	$src = $dir;
 	$dst = '/web/bundles' . $dir;
@@ -189,7 +191,8 @@ function copy_vendor_assets() {
 
 // register our custom hooks
 SymfonyShell\register_hook ( 'composer_install' ); // install the required dependencies as per composer.json
-SymfonyShell\register_hook ( 'copy_vendor_assets' ); // should be registered before `symfony_dump_assets` hook
+SymfonyShell\register_hook ( 'copy_vendor_assets','vendor/thomaspark' ,'web/bundles/vendor/thomaspark'); // should be registered before `symfony_dump_assets` hook
+SymfonyShell\register_hook ( 'copy_vendor_assets','vendor/fortawesome' ,'web/bundles/vendor/fortawesome'); // should be registered before `symfony_dump_assets` hook
 SymfonyShell\register_hook ( 'symfony_assets_install', 'prod', true ); // install the bundle assets to the default dir (default "web")
 SymfonyShell\register_hook ( 'symfony_dump_assets' ); // dump the assets to the public folder (eg. web)
 SymfonyShell\register_hook ( 'symfony_cache_clear' ); // clear the default (production) cache
