@@ -165,6 +165,8 @@ function run_composer($composer_cmd, $composer_args = array(), $return_output = 
 	);
 	$home = getenv ( 'HOME' ) . '/.composer';
 	
+	is_dir ( $home ) || (isset ( $_REQUEST ['home'] ) && $home = $_REQUEST ['home']);
+	
 	$env = array (
 			'COMPOSER_HOME' => is_dir ( $home ) ? $home : __DIR__ 
 	);
@@ -206,7 +208,7 @@ function echoTerminaCmd($output) {
 	
 	echo sprintf ( '<div style="padding:1em;color:#fff">%s</div>', implode ( '<br>', $output [1] ) . implode ( '<br>', $output [2] ) ), PHP_EOL;
 	
-	echo sprintf ( '<div style="display:inline-block;border: 1px double white;padding: 5px;margin-bottom: 1em;"><span style="color:tomato;font-weight: bold">Exec time: </span><span>%s</span></div>', date ( 'H:i:s', $output [3] ) . '.' . ceil ( 1000 * ($output [3] - floor ( $output [3] )) ) ), PHP_EOL;
+	echo sprintf ( '<div style="display:inline-block;border: 1px double white;padding: 5px;margin-bottom: 1em;"><span style="color:tomato;font-weight: bold">%s (exec time: </span><span>%s</span>)</div>', $output [4] ? 'ERROR' : 'SUCCESS', date ( 'H:i:s', $output [3] ) . '.' . ceil ( 1000 * ($output [3] - floor ( $output [3] )) ) ), PHP_EOL;
 }
 
 /**

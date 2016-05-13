@@ -12,13 +12,14 @@ function _copy($src, $dst, $mode = 0770) {
 	$success = true;
 	
 	if (is_dir ( $src )) {
-		mkdir ( $dst, $mode, true );
-		
-		$files = scandir ( $src );
-		
-		foreach ( $files as $file ) {
-			if ($file != "." && $file != "..")
-				$success &= _copy ( "$src/$file", "$dst/$file" );
+		if ($success &= is_dir ( $dst ) || mkdir ( $dst, $mode, true )) {
+			
+			$files = scandir ( $src );
+			
+			foreach ( $files as $file ) {
+				if ($file != "." && $file != "..")
+					$success &= _copy ( "$src/$file", "$dst/$file" );
+			}
 		}
 	} else if (file_exists ( $src ))
 		$success &= copy ( $src, $dst );
@@ -125,7 +126,8 @@ function copy_vendor_assets() {
 				array (
 						$is_error ? $string : '' 
 				),
-				microtime ( true ) - $start 
+				microtime ( true ) - $start,
+				0 
 		) );
 	};
 	
