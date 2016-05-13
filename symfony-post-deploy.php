@@ -43,6 +43,48 @@ function composer_install() {
 }
 
 /**
+ * Installs the Composer required components
+ *
+ * @return bool Returns true on success, false otherwise
+ */
+function composer_update() {
+	$output = SymfonyShell\run_composer ( 'update', array (
+			'no-interaction' => null 
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return ! $output [4]; // returns the cmd exec exit code
+}
+
+/**
+ * Helper function that will diagnose the composer.json file
+ *
+ * @return boolean Returns true on success, false otherwise
+ */
+function composer_diagnose() {
+	$output = SymfonyShell\run_composer ( 'diagnose', array (
+			'no-interaction' => null 
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return ! $output [4]; // returns the cmd exec exit code
+}
+
+/**
+ * Helper function that will validate the composer.json file
+ *
+ * @return boolean Returns true on success, false otherwise
+ */
+function composer_validate() {
+	$output = SymfonyShell\run_composer ( 'validate', array (
+			'no-interaction' => null 
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return ! $output [4]; // returns the cmd exec exit code
+}
+
+/**
  * Dumps the Symfony assets
  *
  * @param string $environment
