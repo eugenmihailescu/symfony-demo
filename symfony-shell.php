@@ -1,253 +1,157 @@
 <?php
-
-namespace SymfonyShell;
-
-/**
- * PHP script utility that allows the run of Composer and Symfony's
- * bin/console remotelely (without SSH or terminal access).
- *
- * @author Eugen Mihailescu
- * @version 0.1
- * @since 2016-05-11
- * @license MIT
- *         
- */
+require_once 'symfony-shell.php';
 
 /**
- * Sets the verbosity level.
- * When true the set the verbosity on, otherwise off.
+ * Recursive copy a file or directory
  *
- * @var bool $_VERBOSITY_
+ * @param string $src        	
+ * @param string $dst        	
+ * @return bool Returns true on success, false otherwise
  */
-$_VERBOSITY_ = true;
-
-/**
- * The path to composer.phar script file
- *
- * @var string $_COMPOSER_BIN_
- */
-$_COMPOSER_BIN_ = __DIR__ . '/composer.phar';
-is_file ( $_COMPOSER_BIN_ ) || $_COMPOSER_BIN_ = exec ( 'which composer' );
-
-/**
- * The path to the Symfony bin/console application script
- *
- * @var string $_SYMFONY_CONSOLE_
- */
-$_SYMFONY_CONSOLE_ = __DIR__ . '/bin/console';
-
-/**
- * The HTML terminal max-width in characters (em)
- *
- * @var int $_TERMINAL_WIDTH_
- */
-$_TERMINAL_WIDTH_ = 80; // chars
-
-/**
- * The HTML terminal max-height in characters (em)
- *
- * @var int $_TERMINAL_HEIGHT_
- */
-$_TERMINAL_HEIGHT_ = 50; // chars
-
-/**
- * The functions registered to run
- *
- * @var array
- */
-$_REGISTERED_FUNCTIONS_ = array ();
-
-/**
- * Encodes a string to a HTML UTF-8
- *
- * @param string $string
- *        	The string to be converted
- * @return string Returns the encoded string
- */
-function encode_utf8_html($string) {
-	if (function_exists ( 'mb_convert_encoding' ))
-		$string = mb_convert_encoding ( $string, 'UTF-8', 'UTF-8' );
+function _copy($src, $dst, $mode = 0770) {
+	$success = true;
 	
-	return htmlspecialchars ( $string, ENT_COMPAT, 'UTF-8' );
+	if (is_dir ( $src )) {
+		mkdir ( $dst, $mode, true );
+		
+		$files = scandir ( $src );
+		
+		foreach ( $files as $file ) {
+			if ($file != "." && $file != "..")
+				$success &= _copy ( "$src/$file", "$dst/$file" );
+		}
+	} else if (file_exists ( $src ))
+		$success &= copy ( $src, $dst );
+	
+	return $success;
 }
 
 /**
- * Exec a PHP script via the PHP CLI environment
+ * Installs the Composer required components
  *
- * @param string $cmd
- *        	The PHP script to execute
- * @param array $args
- *        	The PHP script arguments with the following specification:
- *        	- the `prefix` key specifies the argument prefix to be used (default to --)
- *        	- the `separator` key specifies the argument {key}SEPARATOR{value} separator (default to =)
- *        	- the `items` key specifies the actual arguments array
- * @param string $work_dir
- *        	The initial working directory for the command
- * @param array $env
- *        	An array of key=value with the environment variables for the command that will be run
- * @param bool $return_output
- *        	When false the output is echoed, otherwise is not.
- * @return $array Returns the array the lines of output for STDOUT, STDERR file descriptors:
- *         - the 0-key contains the shell command
- *         - the 1-key contains the STDOUT output lines
- *         - the 2-key contains the STDERR output lines.
- *         - the 3-key contains the total execution time in microseconds
+ * @return int Returns the command execution exit code
  */
-function exec_cmd($cmd, $args = array(), $work_dir = __DIR__, $env = array(), $return_output = false) {
+function composer_install() {
+	$output = SymfonyShell\run_composer ( 'install', array (
+			'optimize-autoloader' => null,
+			'no-interaction' => null 
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
+}
+
+/**
+ * Dumps the Symfony assets
+ *
+ * @param string $environment
+ *        	The Symfony environments (eg. dev, prod, etc)
+ * @return int Returns the command execution exit code
+ */
+function symfony_dump_assets($environment = 'prod') {
+	$output = SymfonyShell\run_symfony_console ( 'assetic:dump', array (
+			'env' => $environment,
+			'no-debug' => null 
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
+}
+
+/**
+ * Clears the Symfony cache directory
+ *
+ * @param string $environment
+ *        	The Symfony environment (eg. prod,dev,tests)
+ * @return int Returns the command execution exit code
+ */
+function symfony_cache_clear($environment = 'prod') {
+	$output = SymfonyShell\run_symfony_console ( 'cache:clear', array (
+			'env' => $environment,
+			'no-debug' => null 
+	) );
+	
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
+}
+/**
+ * Install the bundle assets to the public (eg.
+ * web) directory
+ *
+ * @param string $environment
+ *        	The Symfony environments (eg. dev, prod, etc)
+ * @param string $symlink
+ *        	When true symlinks the assets otherwise copy them
+ * @param string $relative
+ *        	When true make relative symlinks
+ * @return int Returns the command execution exit code
+ */
+function symfony_assets_install($environment = 'prod', $symlink = false, $relative = false) {
+	$args = array (
+			'env' => $environment,
+			'no-debug' => null 
+	);
+	
+	$symlink && $args ['symlink'] = null;
+	$relative && $args ['relative'] = null;
+	
+	$output = SymfonyShell\run_symfony_console ( 'assets:install', $args );
+	
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
+}
+
+/**
+ * This is a custom hook that has nothing to do with Composer/Symfony
+ *
+ * @return bool Returns true on success, false otherwise
+ */
+function copy_vendor_assets() {
+	$dir = '/vendor/bower-asset/';
+	$src = $dir;
+	$dst = '/web/bundles' . $dir;
+	
+	$result = false;
 	$start = microtime ( true );
 	
-	// prepare the command arguments
-	$arg_prefix = isset ( $args ['prefix'] ) ? $args ['prefix'] : '--';
-	$arg_separator = isset ( $args ['separator'] ) ? $args ['separator'] : '=';
+	$echo = function ($string, $is_error = false) use (&$src, &$dst, &$start) {
+		SymfonyShell\echoTerminaCmd ( array (
+				sprintf ( 'cp %s %s', $src, $dst ),
+				array (
+						$is_error ? '' : $string 
+				),
+				array (
+						$is_error ? $string : '' 
+				),
+				microtime ( true ) - $start 
+		) );
+	};
 	
-	$cmd_args = array ();
-	if (isset ( $args ['items'] ))
-		foreach ( $args ['items'] as $key => $value ) {
-			$cmd_args [] = $arg_prefix . $key . (null !== $value ? $arg_separator . escapeshellarg ( $value ) : '');
+	if (is_dir ( __DIR__ . $src )) {
+		$stat = stat ( __DIR__ . $src ); // get file info
+		if ($result = _copy ( __DIR__ . $src, __DIR__ . $dst, $stat ? $stat [2] : 0770 ))
+			$echo ( sprintf ( 'Folder %s copied successfully to %s', $src, $dst ) );
+		else {
+			$sys_err = error_get_last ();
+			$echo ( sprintf ( '%s (%s)', $sys_err ['message'], $sys_err ['type'] ) );
 		}
+	} else
+		$echo ( sprintf ( 'Directory %s does not exist', $src ) );
 	
-	$php_cmd = sprintf ( 'php %s %s', escapeshellcmd ( $cmd ), implode ( ' ', $cmd_args ) );
-	
-	$pipes = array ();
-	$descriptorspec = array (
-			// STDOUT
-			1 => array (
-					'pipe',
-					'w' 
-			),
-			// STDERR
-			2 => array (
-					'pipe',
-					'w' 
-			) 
-	);
-	
-	$output = array (
-			0 => $php_cmd 
-	);
-	
-	// execute the process
-	$p = proc_open ( $php_cmd, $descriptorspec, $pipes, $work_dir, $env );
-	
-	foreach ( array_keys ( $descriptorspec ) as $index ) {
-		while ( ! feof ( $pipes [$index] ) ) {
-			isset ( $output [$index] ) || $output [$index] = array ();
-			$output [$index] [] = encode_utf8_html ( fgets ( $pipes [$index] ) );
-		}
-		
-		fclose ( $pipes [$index] );
-	}
-	
-	proc_close ( $p );
-	
-	$output [3] = microtime ( true ) - $start;
-	
-	return $output;
+	return $result;
 }
 
-/**
- * Execute a Composer command
- *
- * @param string $composer_cmd
- *        	The Composer command to run (eg. install, update, etc)
- * @param array $composer_args
- *        	An argument=value array of arguments for the Composer command
- * @param string $return_output
- *        	When false the output is echoed, otherwise is not.
- * @return Returns the array the lines of output for STDOUT, STDERR file descriptors
- */
-function run_composer($composer_cmd, $composer_args = array(), $return_output = false) {
-	global $_COMPOSER_BIN_, $_VERBOSITY_;
-	
-	$_VERBOSITY_ && $composer_args ['verbose'] = null;
-	
-	$args = array (
-			'items' => $composer_args 
-	);
-	$env = array (
-			'COMPOSER_HOME' => __DIR__ 
-	);
-	
-	return exec_cmd ( sprintf ( '%s %s', escapeshellcmd ( $_COMPOSER_BIN_ ), escapeshellcmd ( $composer_cmd ) ), $args, __DIR__, $env, $return_output );
-}
+// register our custom hooks
+SymfonyShell\register_hook ( 'composer_install' ); // install the required dependencies as per composer.json
+SymfonyShell\register_hook ( 'copy_vendor_assets' ); // should be registered before `symfony_dump_assets` hook
+SymfonyShell\register_hook ( 'symfony_assets_install', 'prod', true ); // install the bundle assets to the default dir (default "web")
+SymfonyShell\register_hook ( 'symfony_dump_assets' ); // dump the assets to the public folder (eg. web)
+SymfonyShell\register_hook ( 'symfony_cache_clear' ); // clear the default (production) cache
+SymfonyShell\register_hook ( 'symfony_cache_clear', 'dev' ); // explicitely clear the development cache
+                                                             
+// run the registered hook functions
+SymfonyShell\run ();
 
-/**
- * Execute a Symfony console command
- *
- * @param string $symfony_cmd
- *        	The Symfony console command to run (eg. cache:clear, assetic:dump, etc)
- * @param array $symfony_args
- *        	An argument=value array of arguments for the Symfony console command
- * @param string $return_output
- *        	When false the output is echoed, otherwise is not.
- * @return Returns the array the lines of output for STDOUT, STDERR file descriptors
- */
-function run_symfony_console($symfony_cmd, $symfony_args = array(), $return_output = false) {
-	global $_SYMFONY_CONSOLE_, $_VERBOSITY_;
-	
-	$_VERBOSITY_ && $symfony_args ['verbose'] = null;
-	
-	$args = array (
-			'items' => $symfony_args 
-	);
-	
-	return exec_cmd ( sprintf ( '%s %s', escapeshellcmd ( $_SYMFONY_CONSOLE_ ), escapeshellcmd ( $symfony_cmd ) ), $args, __DIR__, null, $return_output );
-}
-
-/**
- * Echos the output to the HTML terminal
- *
- * @param array $output
- *        	An array compatible with the return value of the `exec_cmd` function
- */
-function echoTerminaCmd($output) {
-	echo sprintf ( '<div><span style="color:tomato;font-weight: bold">%s ~ $ </span><span>%s</span></div>', get_current_user () . '@' . php_uname ( 'n' ), $output [0] ), PHP_EOL;
-	
-	echo sprintf ( '<div style="padding:1em;color:#fff">%s</div>', implode ( '<br>', $output [1] ) . implode ( '<br>', $output [2] ) ), PHP_EOL;
-	
-	echo sprintf ( '<div style="display:inline-block;border: 1px double white;padding: 5px;margin-bottom: 1em;"><span style="color:tomato;font-weight: bold">Exec time: </span><span>%s</span></div>', date ( 'H:i:s', $output [3] ) . '.' . ceil ( 1000 * ($output [3] - floor ( $output [3] )) ) ), PHP_EOL;
-}
-
-/**
- * Register a function to be executed on terminal
- *
- * @param callable $callback        	
- * @param mixed $arguments
- *        	A variable number of arguments that are dynamically detected
- * @see run()
- */
-function register_hook($callback) {
-	global $_REGISTERED_FUNCTIONS_;
-	
-	$_REGISTERED_FUNCTIONS_ [] = func_get_args ();
-}
-
-/**
- * Run the registered functions on terminal
- *
- * @see register_hook()
- */
-function run() {
-	global $_REGISTERED_FUNCTIONS_, $_TERMINAL_WIDTH_, $_TERMINAL_HEIGHT_;
-	
-	ob_start ();
-	?>
-
-<div style="overflow:auto;padding:0.5em;background-color: #000; color: #0f0;max-width:<?php echo $_TERMINAL_WIDTH_;?>em;max-height:<?php echo $_TERMINAL_HEIGHT_;?>em">
-<?php
-	foreach ( $_REGISTERED_FUNCTIONS_ as $fn )
-		call_user_func_array ( $fn [0], array_slice ( $fn, 1 ) );
-	?>	
-</div>
-
-<?php
-	$output = ob_get_clean ();
-	
-	if (php_sapi_name () == "cli")
-		echo htmlspecialchars_decode ( strip_tags ( $output ) );
-	else
-		echo $output;
-	?>
-<?php
-}
 ?>

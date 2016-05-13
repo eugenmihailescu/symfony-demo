@@ -28,12 +28,17 @@ function _copy($src, $dst, $mode = 0770) {
 
 /**
  * Installs the Composer required components
+ *
+ * @return int Returns the command execution exit code
  */
 function composer_install() {
-	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_composer ( 'install', array (
+	$output = SymfonyShell\run_composer ( 'install', array (
 			'optimize-autoloader' => null,
 			'no-interaction' => null 
-	) ) );
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
 }
 
 /**
@@ -41,12 +46,16 @@ function composer_install() {
  *
  * @param string $environment
  *        	The Symfony environments (eg. dev, prod, etc)
+ * @return int Returns the command execution exit code
  */
 function symfony_dump_assets($environment = 'prod') {
-	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_symfony_console ( 'assetic:dump', array (
+	$output = SymfonyShell\run_symfony_console ( 'assetic:dump', array (
 			'env' => $environment,
 			'no-debug' => null 
-	) ) );
+	) );
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
 }
 
 /**
@@ -54,12 +63,17 @@ function symfony_dump_assets($environment = 'prod') {
  *
  * @param string $environment
  *        	The Symfony environment (eg. prod,dev,tests)
+ * @return int Returns the command execution exit code
  */
 function symfony_cache_clear($environment = 'prod') {
-	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_symfony_console ( 'cache:clear', array (
+	$output = SymfonyShell\run_symfony_console ( 'cache:clear', array (
 			'env' => $environment,
 			'no-debug' => null 
-	) ) );
+	) );
+	
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
 }
 /**
  * Install the bundle assets to the public (eg.
@@ -71,6 +85,7 @@ function symfony_cache_clear($environment = 'prod') {
  *        	When true symlinks the assets otherwise copy them
  * @param string $relative
  *        	When true make relative symlinks
+ * @return int Returns the command execution exit code
  */
 function symfony_assets_install($environment = 'prod', $symlink = false, $relative = false) {
 	$args = array (
@@ -81,22 +96,29 @@ function symfony_assets_install($environment = 'prod', $symlink = false, $relati
 	$symlink && $args ['symlink'] = null;
 	$relative && $args ['relative'] = null;
 	
-	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_symfony_console ( 'assets:install', $args ) );
+	$output = SymfonyShell\run_symfony_console ( 'assets:install', $args );
+	
+	SymfonyShell\echoTerminaCmd ( $output );
+	
+	return $output [4]; // returns the cmd exec exit code
 }
 
 /**
  * This is a custom hook that has nothing to do with Composer/Symfony
+ *
+ * @return bool Returns true on success, false otherwise
  */
 function copy_vendor_assets() {
-	$dir = '/vendor/bower-asset';
-	$src = __DIR__ . "$dir";
-	$dst = __DIR__ . '/web/bundles' . $dir;
+	$dir = '/vendor/bower-asset/';
+	$src = $dir;
+	$dst = '/web/bundles' . $dir;
 	
+	$result = false;
 	$start = microtime ( true );
 	
 	$echo = function ($string, $is_error = false) use (&$src, &$dst, &$start) {
 		SymfonyShell\echoTerminaCmd ( array (
-				sprintf ( 'mv %s %s', $src, $dst ),
+				sprintf ( 'cp %s %s', $src, $dst ),
 				array (
 						$is_error ? '' : $string 
 				),
@@ -107,13 +129,18 @@ function copy_vendor_assets() {
 		) );
 	};
 	
-	$stat = stat ( $src );// get file info
-	if (_copy ( $src, $dst, $stat [2] ))
-		$echo ( sprintf ( 'Folder %s copied successfully to %s', str_replace ( __DIR__, '', $src ), str_replace ( __DIR__, '', $dst ) ) );
-	else {
-		$sys_err = error_get_last ();
-		$echo ( sprintf ( '%s (%s)', $sys_err ['message'], $sys_err ['type'] ) );
-	}
+	if (is_dir ( __DIR__ . $src )) {
+		$stat = stat ( __DIR__ . $src ); // get file info
+		if ($result = _copy ( __DIR__ . $src, __DIR__ . $dst, $stat ? $stat [2] : 0770 ))
+			$echo ( sprintf ( 'Folder %s copied successfully to %s', $src, $dst ) );
+		else {
+			$sys_err = error_get_last ();
+			$echo ( sprintf ( '%s (%s)', $sys_err ['message'], $sys_err ['type'] ) );
+		}
+	} else
+		$echo ( sprintf ( 'Directory %s does not exist', $src ) );
+	
+	return $result;
 }
 
 // register our custom hooks
