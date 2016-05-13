@@ -1,29 +1,29 @@
 <?php
 require_once 'symfony-shell.php';
-/**
- * Removes a directory recursively
- *
- * @param string $dir        	
- */
-function _rmdir($dir) {
-	$files = array_diff ( scandir ( $dir ), array (
-			'.',
-			'..' 
-	) );
-	foreach ( $files as $file ) {
-		(is_dir ( "$dir/$file" )) ? _rmdir ( "$dir/$file" ) : unlink ( "$dir/$file" );
-	}
-	return rmdir ( $dir );
-}
 
 /**
- * Updates the dependencies according to composer.json
+ * Recursive copy a file or directory
+ *
+ * @param string $src        	
+ * @param string $dst        	
+ * @return bool Returns true on success, false otherwise
  */
-function composer_update() {
-	SymfonyShell\echoTerminaCmd ( SymfonyShell\run_composer ( 'update', array (
-			'optimize-autoloader' => null,
-			'no-interaction' => null 
-	) ) );
+function _copy($src, $dst, $mode = 0770) {
+	$success = true;
+	
+	if (is_dir ( $src )) {
+		mkdir ( $dst, $mode, true );
+		
+		$files = scandir ( $src );
+		
+		foreach ( $files as $file ) {
+			if ($file != "." && $file != "..")
+				$success &= _copy ( "$src/$file", "$dst/$file" );
+		}
+	} else if (file_exists ( $src ))
+		$success &= copy ( $src, $dst );
+	
+	return $success;
 }
 
 /**
@@ -87,7 +87,7 @@ function symfony_assets_install($environment = 'prod', $symlink = false, $relati
 /**
  * This is a custom hook that has nothing to do with Composer/Symfony
  */
-function move_vendor_assets() {
+function copy_vendor_assets() {
 	$dir = '/vendor/bower-asset';
 	$src = __DIR__ . "$dir";
 	$dst = __DIR__ . '/web/bundles' . $dir;
@@ -107,29 +107,22 @@ function move_vendor_assets() {
 		) );
 	};
 	
-	if (is_dir ( $src )) {
-		is_dir ( $dst ) && _rmdir ( $dst );
-		
-		mkdir ( $dst, 0770, true ); // create the destination if not exists
-		
-		if (! rename ( $src, $dst )) {
-			$sys_err = error_get_last ();
-			$echo ( sprintf ( '%s (%s)', $sys_err ['message'], $sys_err ['type'] ) );
-		} else
-			$echo ( sprintf ( '%s moved successfully to %s', $src, $dst ) );
-	} else
-		$echo ( sprintf ( '%s does not exist', $src ) );
+	if (_copy ( $src, $dst, fileperms ( $src ) ))
+		$echo ( sprintf ( 'Folder %s copied successfully to %s', str_replace ( __DIR__, '', $src ), str_replace ( __DIR__, '', $dst ) ) );
+	else {
+		$sys_err = error_get_last ();
+		$echo ( sprintf ( '%s (%s)', $sys_err ['message'], $sys_err ['type'] ) );
+	}
 }
 
 // register our custom hooks
-SymfonyShell\register_hook ( 'composer_update' ); // make sure the dependencies are up-to-date
 SymfonyShell\register_hook ( 'composer_install' ); // install the required dependencies as per composer.json
-SymfonyShell\register_hook ( 'move_vendor_assets' ); // should be registered before `symfony_dump_assets` hook
-SymfonyShell\register_hook ( 'symfony_cache_clear' ); // clear the default (production) cache
-SymfonyShell\register_hook ( 'symfony_cache_clear', 'dev' ); // explicitely clear the development cache
+SymfonyShell\register_hook ( 'copy_vendor_assets' ); // should be registered before `symfony_dump_assets` hook
 SymfonyShell\register_hook ( 'symfony_assets_install', 'prod', true ); // install the bundle assets to the default dir (default "web")
 SymfonyShell\register_hook ( 'symfony_dump_assets' ); // dump the assets to the public folder (eg. web)
-                                                      
+SymfonyShell\register_hook ( 'symfony_cache_clear' ); // clear the default (production) cache
+SymfonyShell\register_hook ( 'symfony_cache_clear', 'dev' ); // explicitely clear the development cache
+                                                             
 // run the registered hook functions
 SymfonyShell\run ();
 
