@@ -48,7 +48,7 @@ twig:
     strict_variables: "%kernel.debug%"
     exception_controller:  "app.exception_controller:showAction"
     paths: 
-      "%kernel.root_dir%/../src/MynixSymfonyDemoBundle/Resources/views": twig_templates
+      "%kernel.root_dir%/../src/Mynix/DemoBundle/Resources/views": twig_templates
 
 # Doctrine Configuration
 doctrine:

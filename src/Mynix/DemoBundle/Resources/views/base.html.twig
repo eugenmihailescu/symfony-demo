@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}Welcome!{% endblock %}</title>
+	{% set theme=current_theme() %}
+	{% block stylesheets %}
+            {% stylesheets filter='cssrewrite' '@app_css' '@fa_css' %}
+                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+            {% endstylesheets %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset(current_theme_css()) }}" />
+	{% endblock %}
+	{% block head_javascripts %}
+	{% javascripts '@jquery' '@bootstrap_js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	{% endblock %}
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="wrap">
+	{% block header %}
+	{% include 'Mynix\DemoBundle::header.html.twig' %}
+	{% endblock %}
+	<div class="container body-container body-container-wrap">{% block body %}{% endblock %}</div>
+</div>
+
+	{% block footer %}
+    {% include 'Mynix\DemoBundle::footer.html.twig' %}
+	{% endblock %}	 
+	
+	{% block footer_javascripts %} 
+	{% javascripts %}
+	{% endjavascripts %} 
+	{% endblock %}
+	<input type="hidden" name="_theme" value="{{ theme }}">
+</body>
+</html>

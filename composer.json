@@ -1,8 +1,8 @@
 {
-	"name" : "symfony/framework-standard-edition",
+	"name" : "mynix/demo-bundle",
 	"license" : "MIT",
 	"type" : "project",
-	"description" : "The \"Symfony Standard Edition\" distribution",
+	"description" : "A demo app built on Symfony",
 	"autoload" : {
 		"psr-4" : {
 			"" : "src/"
@@ -72,5 +72,9 @@
 		"branch-alias" : {
 			"dev-master" : "3.0-dev"
 		}
+	},
+	"minimum-stability" : "stable",
+	"support" : {
+		"email" : "eugenmihailescux@gmail.com"
 	}
 }

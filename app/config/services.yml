@@ -1,7 +1,7 @@
 parameters: null
 services:
   app.entity_voter:
-    class: MynixSymfonyDemoBundle\Security\EntityVoter
+    class: Mynix\DemoBundle\Security\EntityVoter
     tags:
     - name: security.voter
     public: false
@@ -10,7 +10,7 @@ services:
     - '%kernel.debug%'
   app.twig.app_extension:
     public: false
-    class: MynixSymfonyDemoBundle\Twig\AppExtension
+    class: Mynix\DemoBundle\Twig\AppExtension
     arguments:
     - '%app_locales%'
     - '%themes_search_pattern%'
@@ -26,7 +26,7 @@ services:
     tags:
     - name: twig.extension
   app.redirect_to_preferred_locale_listener:
-    class: MynixSymfonyDemoBundle\EventListener\RedirectToPreferredLocaleListener
+    class: Mynix\DemoBundle\EventListener\RedirectToPreferredLocaleListener
     arguments:
     - '@router'
     - '%app_locales%'
@@ -36,19 +36,19 @@ services:
     - name: kernel.event_listener
       event: kernel.request
       method: onKernelRequest
+  app.exception_controller:
+    class: Mynix\DemoBundle\Controller\ExceptionController
+    arguments:
+    - '@twig'
+    - '%kernel.debug%'
   validator.foreign_key_validator:
-    class: MynixSymfonyDemoBundle\Validator\Constraints\ForeignKeyValidator
+    class: Mynix\DemoBundle\Validator\Constraints\ForeignKeyValidator
     arguments:
     - '@doctrine'
     tags:
     - name: validator.constraint_validator
-  app.exception_controller:
-    class: MynixSymfonyDemoBundle\Controller\ExceptionController
-    arguments:
-    - '@twig'
-    - '%kernel.debug%'
   lang.autodetect:
-    class: MynixSymfonyDemoBundle\Services\LanguageDetector
+    class: Mynix\DemoBundle\Services\LanguageDetector
     arguments:
     - '%kernel.default_locale%'
     - '%app_locales%'

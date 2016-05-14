@@ -1,6 +1,7 @@
 <?php
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+
 class AppKernel extends Kernel {
 	public function registerBundles() {
 		$bundles = [ 
@@ -10,8 +11,8 @@ class AppKernel extends Kernel {
 				new Symfony\Bundle\MonologBundle\MonologBundle (),
 				new Doctrine\Bundle\DoctrineBundle\DoctrineBundle (),
 				new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle (),
-				new MynixSymfonyDemoBundle\MynixSymfonyDemoBundle (),
-				new Symfony\Bundle\AsseticBundle\AsseticBundle () 
+				new Symfony\Bundle\AsseticBundle\AsseticBundle (),
+				new Mynix\DemoBundle\MynixDemoBundle()
 		];
 		
 		if (in_array ( $this->getEnvironment (), [ 
