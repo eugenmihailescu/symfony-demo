@@ -323,6 +323,8 @@ function run($ignore_errors = false) {
 			echo htmlspecialchars_decode ( strip_tags ( $output ) );
 		} else
 			echo $output;
+		
+		flush ();
 	};
 	
 	ob_start ();
