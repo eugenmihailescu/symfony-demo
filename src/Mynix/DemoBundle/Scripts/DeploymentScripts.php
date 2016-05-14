@@ -47,7 +47,7 @@ class DeploymentScripts extends Composer\ScriptHandler {
 		
 		$consoleDir = static::getConsoleDir ( $event, 'dump assets' );
 		
-		static::executeCommand ( $event, $consoleDir, 'assetic:dump ', $options ['process-timeout'] );
+		static::executeCommand ( $event, $consoleDir, 'assetic:dump', $options ['process-timeout'] );
 	}
 	
 	/**
