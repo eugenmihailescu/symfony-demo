@@ -70,7 +70,7 @@ class WptestsUsers {
 	 *
 	 * @var \DateTime
 	 */
-	private $userRegistered = '0000-00-00 00:00:00';
+	private $userRegistered = new \DateTime();
 	
 	/**
 	 *

@@ -65,7 +65,7 @@ class WptestsLinks {
 	 *
 	 * @var \DateTime @ORM\Column(name="link_updated", type="datetime", nullable=false)
 	 */
-	private $linkUpdated = '0000-00-00 00:00:00';
+	private $linkUpdated = new \DateTime();
 	
 	/**
 	 *

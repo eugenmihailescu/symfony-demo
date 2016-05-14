@@ -54,14 +54,14 @@ class WptestsComments
      *
      * @ORM\Column(name="comment_date", type="datetime", nullable=false)
      */
-    private $commentDate = '0000-00-00 00:00:00';
+    private $commentDate = new \DateTime();
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="comment_date_gmt", type="datetime", nullable=false)
      */
-    private $commentDateGmt = '0000-00-00 00:00:00';
+    private $commentDateGmt = new \DateTime();
 
     /**
      * @var string
