@@ -96,7 +96,7 @@ class EntityEditController extends GenericController {
 		
 		$this->is_readonly || $options ['token_id'] = $this->getTokenId ( $token_id );
 		
-		$html = $templating->render ( 'Mynix\DemoBundle:entity:edit.html.twig', $options );
+		$html = $templating->render ( 'MynixDemoBundle:entity:edit.html.twig', $options );
 		
 		return new Response ( $html );
 	}

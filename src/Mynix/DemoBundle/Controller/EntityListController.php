@@ -53,7 +53,7 @@ final class EntityListController extends GenericController {
 				$this->trans ( 'entity_name' ) 
 		);
 		
-		$html = $templating->render ( 'Mynix\DemoBundle:entity:list.html.twig', array (
+		$html = $templating->render ( 'MynixDemoBundle:entity:list.html.twig', array (
 				'data' => $entities,
 				'pages' => $page_count,
 				'page' => $page,

@@ -1,4 +1,4 @@
-{% extends 'Mynix\DemoBundle::base.html.twig' %} {% block body %} {% for
+{% extends 'MynixDemoBundle::base.html.twig' %} {% block body %} {% for
 flash_message in app.session.flashBag.get('notice') %}
 <div class="alert alert-dismissible alert-success"
 	style="display: inline-block">
@@ -13,5 +13,5 @@ flash_message in app.session.flashBag.get('notice') %}
 <a href="{{ routes.back }}">
 	<button class="btn btn-default">&larr; {{ 'list_of_entities'|trans }}</button>
 </a>
-{% include 'Mynix\DemoBundle::grid.html.twig' %}
+{% include 'MynixDemoBundle::grid.html.twig' %}
 {% endblock %}

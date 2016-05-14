@@ -18,7 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * // last username entered by the user
  * $lastUsername = $authenticationUtils->getLastUsername ();
  *
- * return $this->render ( 'Mynix\DemoBundle:security:login.html.twig', array (
+ * return $this->render ( 'MynixDemoBundle:security:login.html.twig', array (
  * // last username entered by the user
  * 'last_username' => $lastUsername,
  * 'error' => $error
@@ -40,7 +40,7 @@ class SecurityController extends GenericController {
 	public function loginAction() {
 		$helper = $this->get ( 'security.authentication_utils' );
 		
-		return $this->render ( 'Mynix\DemoBundle:security:login.html.twig', array (
+		return $this->render ( 'MynixDemoBundle:security:login.html.twig', array (
 				// last username entered by the user (if any)
 				'last_username' => $helper->getLastUsername (),
 				// last authentication error (if any)

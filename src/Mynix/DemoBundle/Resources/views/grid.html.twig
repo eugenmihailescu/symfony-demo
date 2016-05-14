@@ -1,4 +1,4 @@
-{% include 'Mynix\DemoBundle::pagenav_limit.html.twig' %}
+{% include 'MynixDemoBundle::pagenav_limit.html.twig' %}
 {# some `data` are zero-indexed, some aren't #}
 {% set nzero_indexed=(data[0]|keys)[0]>0?1:0 %}
 <div class="panel panel-default">
@@ -27,4 +27,4 @@
 	</table> 
   </div>
 </div>
-{% include 'Mynix\DemoBundle::pagenav.html.twig' %}
+{% include 'MynixDemoBundle::pagenav.html.twig' %}

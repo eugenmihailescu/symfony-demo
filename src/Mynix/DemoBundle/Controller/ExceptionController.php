@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExceptionController extends ExceptionController {
 	protected function findTemplate(Request $request, $format, $code, $showException) {
-		return 'Mynix\DemoBundle:error:error.html.twig';
+		return 'MynixDemoBundle:error:error.html.twig';
 	}
 	public function showAction(Request $request, FlattenException $exception, DebugLoggerInterface $logger = null) {
 		$currentContent = $this->getAndCleanOutputBuffering ( $request->headers->get ( 'X-Php-Ob-Level', - 1 ) );

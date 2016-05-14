@@ -19,11 +19,11 @@ final class EntityBrowseController extends GenericController {
 	public function browseEntityAction($entity, $page, $limit) {
 		$this->setEntity ( $entity );
 		
-		$post_repository = $this->getDoctrine ()->getRepository ( 'Mynix\DemoBundle:' . $entity );
+		$post_repository = $this->getDoctrine ()->getRepository ( 'MynixDemoBundle:' . $entity );
 		
 		$em = $this->get ( 'doctrine.orm.entity_manager' );
 		
-		$persister = $em->getUnitOfWork ()->getEntityPersister ( 'Mynix\DemoBundle:' . $entity );
+		$persister = $em->getUnitOfWork ()->getEntityPersister ( 'MynixDemoBundle:' . $entity );
 		
 		$page_count = ceil ( $persister->count () / $limit ); // the total number of pages
 		
@@ -53,7 +53,7 @@ final class EntityBrowseController extends GenericController {
 				}
 			}
 			
-			$html = $templating->render ( 'Mynix\DemoBundle:entity:browse.html.twig', array (
+			$html = $templating->render ( 'MynixDemoBundle:entity:browse.html.twig', array (
 					'pk' => $annotation->pk,
 					'columns' => $columns,
 					'entity_alias' => $annotation->alias,

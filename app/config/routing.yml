@@ -12,7 +12,7 @@ homepage:
   requirements:
     _locale: '%app_locales%'
   defaults:
-    _controller: Mynix/DemoBundle:EntityList:browseEntities
+    _controller: MynixDemoBundle:EntityList:browseEntities
     _locale: '%locale%'
     _theme: '%default_theme%'
     page: '%first_page%'
@@ -26,7 +26,7 @@ entities_list:
   defaults:
     _locale: '%locale%'
     _theme: '%default_theme%'
-    _controller: Mynix/DemoBundle:EntityList:browseEntities
+    _controller: MynixDemoBundle:EntityList:browseEntities
     page: '%first_page%'
     limit: '%recs_per_page%'
 browse_entity:
@@ -39,7 +39,7 @@ browse_entity:
   defaults:
     _locale: '%locale%'
     _theme: '%default_theme%'
-    _controller: Mynix/DemoBundle:EntityBrowse:browseEntity
+    _controller: MynixDemoBundle:EntityBrowse:browseEntity
     page: '%first_page%'
     limit: '%recs_per_page%'
 view_entity:
@@ -51,7 +51,7 @@ view_entity:
   defaults:
     _locale: '%locale%'
     _theme: '%default_theme%'
-    _controller: Mynix/DemoBundle:EntityView:viewEntity
+    _controller: MynixDemoBundle:EntityView:viewEntity
     id: 0
   methods:
   - GET
@@ -64,7 +64,7 @@ edit_entity:
   defaults:
     _locale: '%locale%'
     _theme: '%default_theme%'
-    _controller: Mynix/DemoBundle:EntityEdit:editEntity
+    _controller: MynixDemoBundle:EntityEdit:editEntity
     success: null
     id: -1
   methods:
@@ -79,7 +79,7 @@ delete_entity:
   defaults:
     _locale: '%locale%'
     _theme: '%default_theme%'
-    _controller: Mynix/DemoBundle:Generic:deleteEntity
+    _controller: MynixDemoBundle:Generic:deleteEntity
   methods:
   - GET
 help:
@@ -94,7 +94,7 @@ help:
 pageNotFound:
   path: /{path}
   defaults:
-    _controller: Mynix/DemoBundle:PageNotFound:pageNotFound
+    _controller: MynixDemoBundle:PageNotFound:pageNotFound
     path: ''
   requirements:
     path: .*

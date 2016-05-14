@@ -172,7 +172,7 @@ class GenericController extends Controller {
 	protected function getPost($id) {
 		$this->validateEntity ();
 		
-		$post = $this->getDoctrine ()->getRepository ( 'Mynix\DemoBundle:' . $this->entity )->find ( $id );
+		$post = $this->getDoctrine ()->getRepository ( 'MynixDemoBundle:' . $this->entity )->find ( $id );
 		
 		return $post;
 	}
@@ -188,7 +188,7 @@ class GenericController extends Controller {
 		
 		$em = $this->get ( 'doctrine.orm.entity_manager' );
 		
-		$fields = $em->getClassMetadata ( 'Mynix\DemoBundle:' . $this->entity )->getFieldNames ();
+		$fields = $em->getClassMetadata ( 'MynixDemoBundle:' . $this->entity )->getFieldNames ();
 		
 		$annotation = $this->getEntityAnnotations ( 'Mynix\DemoBundle\Annotation\EntityAnnotation' );
 		
