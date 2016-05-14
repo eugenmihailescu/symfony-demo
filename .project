@@ -43,11 +43,4 @@
 		<nature>com.dubture.symfony.core.symfonyNature</nature>
 		<nature>com.dubture.doctrine.core.doctrineNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Symfony</name>
-			<type>2</type>
-			<location>/home/eugen/workspace/SymfonyTraining/T1/vendor/symfony/symfony/src/Symfony</location>
-		</link>
-	</linkedResources>
 </projectDescription>

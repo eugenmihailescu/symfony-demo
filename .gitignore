@@ -24,4 +24,5 @@ web/bundles
 web/css
 web/fonts
 web/js
-
+.project
+.buildpath

@@ -1,5 +1,5 @@
 app:
-  resource: '@Mynix/DemoBundle/Controller/'
+  resource: Mynix/DemoBundle/Controller/
   type: annotation
   prefix: /{_locale}/{_theme}/
   requirements:
@@ -99,4 +99,4 @@ pageNotFound:
   requirements:
     path: .*
 bootswatch_css:
-  path: '%kernel.root_dir%/../web/vendor/thomaspark/bootswatch/'    
+  path: '%kernel.root_dir%/../web/vendor/thomaspark/bootswatch/'

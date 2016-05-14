@@ -99,7 +99,7 @@ assetic:
     assets:
       app_css:
         inputs:
-          - %kernel.root_dir%/../web/bundles/app/css/my-style.css
+          - %kernel.root_dir%/../web/bundles/mynixdemo/css/my-style.css
       bootstrap_js:
         inputs:
           - %kernel.root_dir%/../web/bundles/vendor/thomaspark/bootswatch/2/js/bootstrap.js
