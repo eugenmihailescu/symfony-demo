@@ -1,5 +1,5 @@
 app:
-  resource: Mynix/DemoBundle/Controller/
+  resource: '@MynixDemoBundle/Controller/'
   type: annotation
   prefix: /{_locale}/{_theme}/
   requirements:

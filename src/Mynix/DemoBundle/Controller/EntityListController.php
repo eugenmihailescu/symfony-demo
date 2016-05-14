@@ -3,7 +3,6 @@
 namespace Mynix\DemoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
-use Mynix\DemoBundle\GenericController;
 
 final class EntityListController extends GenericController {
 	public function browseEntitiesAction($page, $limit) {

@@ -5,7 +5,6 @@ namespace Mynix\DemoBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Mynix\DemoBundle\GenericController;
 
 class EntityEditController extends GenericController {
 	private $is_readonly;
