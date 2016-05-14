@@ -77,7 +77,19 @@ function encode_utf8_html($string) {
 	
 	return htmlspecialchars ( $string, ENT_COMPAT, 'UTF-8' );
 }
-
+function getHtmlColor2TerminalEscapeCode($color) {
+	$code = '';
+	switch ($color) {
+		case 'tomato' :
+			$code = '91';
+			break;
+		case '#fff' :
+			$code = '97';
+			break;
+	}
+	
+	return $code;
+}
 /**
  * Exec a PHP script via the PHP CLI environment
  *
@@ -297,15 +309,32 @@ function run($ignore_errors = false) {
 	
 	$result = true;
 	
-	ob_start ();
 	?>
 
 <div style="overflow:auto;padding:0.5em;background-color: #000; color: #0f0;max-width:<?php echo $_TERMINAL_WIDTH_;?>em;max-height:<?php echo $_TERMINAL_HEIGHT_;?>em">
 <?php
 	foreach ( $_REGISTERED_FUNCTIONS_ as $fn ) {
+		ob_start ();
+		
 		$result &= call_user_func_array ( $fn [0], array_slice ( $fn, 1 ) );
 		
-		// exit on error
+		$output = ob_get_clean ();
+		
+		if (php_sapi_name () == "cli") {
+			// on *nix terminal use color escape codes
+			if (! stripos ( PHP_OS, 'win' )) {
+				$matches = null;
+				if (preg_match_all ( '/(<(div|span).+color\s*:\s*([^;\s\'"]+)).*<\/\2>/', $output, $matches ))
+					foreach ( $matches [0] as $index => $html ) {
+						$output = str_replace ( $html, chr ( 27 ) . '[1m' . chr ( 27 ) . '[' . getHtmlColor2TerminalEscapeCode ( $matches [3] [$index] ) . 'm' . $html . chr ( 27 ) . '[0m', $output );
+					}
+			}
+			
+			echo htmlspecialchars_decode ( strip_tags ( $output ) );
+		} else
+			echo $output;
+			
+			// exit on error
 		if (! ($ignore_errors || $result))
 			break;
 	}
@@ -313,15 +342,7 @@ function run($ignore_errors = false) {
 </div>
 
 <?php
-	$output = ob_get_clean ();
 	
-	if (php_sapi_name () == "cli")
-		echo htmlspecialchars_decode ( strip_tags ( $output ) );
-	else
-		echo $output;
-	?>
-<?php
-
 	return $result;
 }
 ?>
