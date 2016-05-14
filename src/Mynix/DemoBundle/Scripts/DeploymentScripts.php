@@ -66,7 +66,7 @@ class DeploymentScripts extends Composer\ScriptHandler {
 		
 		static::executeCommand ( $event, $consoleDir, 'doctrine:database:create', $options ['process-timeout'] );
 		
-		if (is_file ( $datapath ))
+		if (is_file ( $datapath ) && filesize ( $datapath ))
 			$event->getIO ()->write ( sprintf ( ' [SKIP] Database schema already exists at %s', $options ['mynix-demo-datapath'] ) );
 		else
 			static::executeCommand ( $event, $consoleDir, 'doctrine:schema:create', $options ['process-timeout'] );
