@@ -309,17 +309,7 @@ function run($ignore_errors = false) {
 	
 	$result = true;
 	
-	?>
-
-<div style="overflow:auto;padding:0.5em;background-color: #000; color: #0f0;max-width:<?php echo $_TERMINAL_WIDTH_;?>em;max-height:<?php echo $_TERMINAL_HEIGHT_;?>em">
-<?php
-	foreach ( $_REGISTERED_FUNCTIONS_ as $fn ) {
-		ob_start ();
-		
-		$result &= call_user_func_array ( $fn [0], array_slice ( $fn, 1 ) );
-		
-		$output = ob_get_clean ();
-		
+	$filter_output = function ($output) {
 		if (php_sapi_name () == "cli") {
 			// on *nix terminal use color escape codes
 			if (! stripos ( PHP_OS, 'win' )) {
@@ -333,15 +323,35 @@ function run($ignore_errors = false) {
 			echo htmlspecialchars_decode ( strip_tags ( $output ) );
 		} else
 			echo $output;
-			
-			// exit on error
+	};
+	
+	ob_start ();
+	?>
+
+<div style="overflow:auto;padding:0.5em;background-color: #000; color: #0f0;max-width:<?php echo $_TERMINAL_WIDTH_;?>em;max-height:<?php echo $_TERMINAL_HEIGHT_;?>em">
+<?php
+	
+	$filter_output ( ob_get_clean () );
+	
+	foreach ( $_REGISTERED_FUNCTIONS_ as $fn ) {
+		ob_start ();
+		
+		$result &= call_user_func_array ( $fn [0], array_slice ( $fn, 1 ) );
+		
+		$filter_output ( ob_get_clean () );
+		
+		// exit on error
 		if (! ($ignore_errors || $result))
 			break;
 	}
+	
+	ob_start ();
 	?>	
 </div>
 
 <?php
+	
+	$filter_output ( ob_get_clean () );
 	
 	return $result;
 }
