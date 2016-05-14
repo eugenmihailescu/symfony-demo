@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Mynix\DemoBundle\Annotation\LookupAnnotation;
 use Mynix\DemoBundle\Annotation\FormFieldTypeAnnotation;
 use Mynix\DemoBundle\Annotation\EntityAnnotation;
+use Mynix\DemoBundle\Validator\Constraints\ForeignKey;
 
 /**
  * WptestsPosts
