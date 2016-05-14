@@ -70,7 +70,7 @@ class WptestsUsers {
 	 *
 	 * @var \DateTime
 	 */
-	private $userRegistered = new \DateTime();
+	private $userRegistered;
 	
 	/**
 	 *
@@ -102,12 +102,18 @@ class WptestsUsers {
 	 * @ORM\Column(name="ID", type="bigint")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
-	 * 
+	 *
 	 * @var integer
 	 */
 	private $id;
+	
+	/**
+	 * Constructor
+	 */
 	public function __construct() {
 		$this->posts = new ArrayCollection ();
+		
+		$this->userRegistered = new \DateTime ();
 	}
 	
 	/**

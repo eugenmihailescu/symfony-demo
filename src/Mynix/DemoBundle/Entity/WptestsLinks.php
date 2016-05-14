@@ -65,7 +65,7 @@ class WptestsLinks {
 	 *
 	 * @var \DateTime @ORM\Column(name="link_updated", type="datetime", nullable=false)
 	 */
-	private $linkUpdated = new \DateTime();
+	private $linkUpdated;
 	
 	/**
 	 *
@@ -92,6 +92,13 @@ class WptestsLinks {
 	 *      @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
 	private $linkId;
+	
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->linkUpdated = new \DateTime ();
+	}
 	
 	/**
 	 * Set linkUrl

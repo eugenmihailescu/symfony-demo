@@ -41,17 +41,21 @@
 			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::installVendorDependencies",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::createDemoDatabase"
 		],
 		"post-update-cmd" : [
 			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::installVendorDependencies",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::createDemoDatabase"
 		]
 	},
 	"config" : {
@@ -60,6 +64,11 @@
 		}
 	},
 	"extra" : {
+		"mynix-demo-datapath" :"app/data/data.db3",
+		"mynix-demo-copy-tasks":[
+			{"source":"vendor/thomaspark","destination":"web/bundles/vendor/thomaspark"},
+			{"source":"vendor/fortawesome","destination":"web/bundles/vendor/fortawesome"}
+		],
 		"symfony-app-dir" : "app",
 		"symfony-bin-dir" : "bin",
 		"symfony-var-dir" : "var",

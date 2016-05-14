@@ -41,7 +41,7 @@ class WptestsPosts {
 	 *
 	 * @var \DateTime
 	 */
-	private $postDate = new \DateTime();
+	private $postDate ;
 	
 	/**
 	 *
@@ -50,7 +50,7 @@ class WptestsPosts {
 	 *
 	 * @var \DateTime
 	 */
-	private $postDateGmt = new \DateTime();
+	private $postDateGmt ;
 	
 	/**
 	 *
@@ -146,7 +146,7 @@ class WptestsPosts {
 	 *
 	 * @var \DateTime
 	 */
-	private $postModified = new \DateTime();
+	private $postModified ;
 	
 	/**
 	 *
@@ -155,7 +155,7 @@ class WptestsPosts {
 	 *
 	 * @var \DateTime
 	 */
-	private $postModifiedGmt = new \DateTime();
+	private $postModifiedGmt ;
 	
 	/**
 	 *

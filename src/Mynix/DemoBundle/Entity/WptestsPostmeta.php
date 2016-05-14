@@ -9,7 +9,7 @@ use Mynix\DemoBundle\Annotation\EntityAnnotation;
  * WptestsPostmeta
  *
  * @ORM\Table(name="wptests_postmeta", indexes={@ORM\Index(name="post_id", columns={"post_id"}),
- * @ORM\Index(name="meta_key", columns={"meta_key"})})
+ * @ORM\Index(name="postmeta_meta_key", columns={"meta_key"})})
  * @ORM\Entity
  * @EntityAnnotation(pk="metaId", columns={"metaKey","metaValue","postId"}, alias="Metadata articole")
  */

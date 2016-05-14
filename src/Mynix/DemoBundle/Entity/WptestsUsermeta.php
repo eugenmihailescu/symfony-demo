@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * WptestsUsermeta
  *
- * @ORM\Table(name="wptests_usermeta", indexes={@ORM\Index(name="user_id", columns={"user_id"}), @ORM\Index(name="meta_key", columns={"meta_key"})})
+ * @ORM\Table(name="wptests_usermeta", indexes={@ORM\Index(name="user_id", columns={"user_id"}), @ORM\Index(name="usermeta_meta_key", columns={"meta_key"})})
  * @ORM\Entity
  */
 class WptestsUsermeta

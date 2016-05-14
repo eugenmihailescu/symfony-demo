@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * WptestsCommentmeta
  *
- * @ORM\Table(name="wptests_commentmeta", indexes={@ORM\Index(name="comment_id", columns={"comment_id"}), @ORM\Index(name="meta_key", columns={"meta_key"})})
+ * @ORM\Table(name="wptests_commentmeta", indexes={@ORM\Index(name="comment_id", columns={"comment_id"}), @ORM\Index(name="commentmeta_meta_key", columns={"meta_key"})})
  * @ORM\Entity
  */
 class WptestsCommentmeta
