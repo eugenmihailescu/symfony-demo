@@ -4,8 +4,12 @@ require_once 'symfony-shell.php';
 /**
  * Recursive copy a file or directory
  *
- * @param string $src        	
- * @param string $dst        	
+ * @param string $src
+ *        	The source file|folder
+ * @param string $dst
+ *        	The destination file|folder
+ * @param octal $mode
+ *        	The destination file|folder permission (octal mode)
  * @return bool Returns true on success, false otherwise
  */
 function _copy($src, $dst, $mode = 0755) {

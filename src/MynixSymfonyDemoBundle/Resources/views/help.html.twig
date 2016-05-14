@@ -1,0 +1,30 @@
+{% extends 'MynixSymfonyDemoBundle::base.html.twig' %} {% block body %}
+<h1>
+	{{ 'welcome'|trans({'app.title':'<code>'~'app.title'|trans~'</code>'})|raw }}
+</h1>
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade active in" id="intro">
+		<div class="panel-body">
+			<p>
+				{{ 'help.p1'|trans({ 'app.title': 'app.title'|trans })|raw }}
+			</p>
+			<p>
+				{{ 'help.p2'|trans }}
+				{% set symfony_link_class='pager left-aligned' %}
+				{% include '@twig_templates/symfony_links.html.twig' %}
+			</p>
+			<p>
+				{{ 'help.p3'|trans({'source.url':'#oops'})|raw }}
+			</p>
+			<div class="panel panel-default" style="display: inline-block;">
+				<div class="panel-body">
+					<span class="label label-info">{{ 'help.cheerup'|trans }}</span>
+					<div class="panel-body">
+					<p>{{ 'help.p4'|trans }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}

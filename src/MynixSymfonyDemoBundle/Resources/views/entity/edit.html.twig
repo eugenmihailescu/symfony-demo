@@ -1,0 +1,64 @@
+{% extends 'MynixSymfonyDemoBundle::base.html.twig' %} 
+{% block body %}
+{% for flash_message in app.session.flashBag.get('notice') %}
+<div class="alert alert-dismissible alert-success" style="display:inline-block">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+{{ flash_message }}
+</div>
+{% endfor %}
+
+<a href="{{ routes.back }}"><button class="btn btn-default">&larr; {{ 'btn_cancel'|trans }}</button></a>
+{% if is_readonly %}
+	<a href="{{ routes.edit }}"><button class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ 'btn_edit'|trans }}</button></a>
+	<a href="#" id="btn_delete_confirm"><button class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ 'btn_delete'|trans }}</button></a>
+{% else %}	
+	<input type="submit" form="{{ form_id }}" value="{{ 'btn_save'|trans }}" class="btn btn-success">
+{% endif %}
+
+{{ form_start(form) }}
+<fieldset>
+		<legend>{{ 'post_details'|trans }} (pk:{{ id }})</legend>
+{{ form_errors(form) }}
+{% for field in fields %}
+<div class="form-group">
+{{ form_label(form[field],null,{'label_attr':{'class':'col-lg-2 control-label'}}) }}
+<div class="col-lg-10">{{ form_widget(form[field],{'attr':{'readonly':is_readonly}}) }}
+<div class="text-danger">
+{{ form_errors(form[field]) }}
+</div>
+</div>
+</div>
+{% endfor %}
+</fieldset>
+{% if not is_readonly and token_id is defined %}
+<input type="hidden" name="{{ token_id }}" value="{{ csrf_token(token_id) }}">
+{{ form_end(form) }}
+{% endif %}
+{% if is_readonly %}
+<div id="delete_confirm" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{{ 'confirm_dialog'|trans }}</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">{{ 'confirm_delete_entry'|trans }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'btn_cancel'|trans }}</button>
+        <a href="{{ routes.delete }}"><button type="button" class="btn btn-danger">{{ 'btn_delete'|trans }}</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+{% block javascripts %}
+<script type="text/javascript">
+(function($){
+	$('*[data-dismiss="modal"]').bind('click',function(){$('#delete_confirm').hide();});
+	$('#btn_delete_confirm').bind('click',function(){$('#delete_confirm').show();});
+})(jQuery);
+</script>
+{% endblock %}
+{% endif %}
+{% endblock %}
