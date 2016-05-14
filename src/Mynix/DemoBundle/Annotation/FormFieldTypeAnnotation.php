@@ -2,8 +2,6 @@
 
 namespace Mynix\DemoBundle\Annotation;
 
-use Mynix\DemoBundle\GenericAnnotation;
-
 /**
  * @Annotation
  * @Target({"PROPERTY","ANNOTATION"})
