@@ -1,7 +1,7 @@
 {% extends 'MynixDemoBundle::base.html.twig' %} 
 {% block body %}
 {% for flash_message in app.session.flashBag.get('notice') %}
-<div class="alert alert-dismissible alert-success" style="display:inline-block">
+<div class="alert alert-dismissible alert-success">
 <button type="button" class="close" data-dismiss="alert">&times;</button>
 {{ flash_message }}
 </div>

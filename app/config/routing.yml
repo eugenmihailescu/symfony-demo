@@ -60,7 +60,7 @@ edit_entity:
   requirements:
     _locale: '%app_locales%'
     entity: '[a-zA-Z][\w\d$_]*'
-    id: \d+
+    id: \d*
   defaults:
     _locale: '%locale%'
     _theme: '%default_theme%'

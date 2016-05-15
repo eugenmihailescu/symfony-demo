@@ -8,20 +8,41 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class EntityEditController extends GenericController {
 	private $is_readonly;
+	
+	/**
+	 * Constructor
+	 *
+	 * @param bool $read_only
+	 *        	When true renders a readonly form, otherwise a read-write form
+	 */
+	public function __construct($read_only = false) {
+		$this->is_readonly = $read_only;
+	}
+	
+	/**
+	 * Returns the screen buttons
+	 * 
+	 * @param string $entity
+	 *        	The current entity
+	 * @param string $pk
+	 *        	The primary key value (empty on a new record)
+	 * @return arrayy
+	 */
 	protected function getButtons($entity, $pk) {
+		$args = array (
+				'entity' => $entity,
+				'_theme' => $this->getCurrentTheme () 
+		);
+		
+		empty ( $pk ) || $args ['id'] = $pk;
+		
 		$buttons = array (
-				'back' => $this->generateUrl ( 'view_entity', array (
-						'entity' => $entity,
-						'id' => $pk,
-						'_theme' => $this->getCurrentTheme () 
-				) ) 
+				'back' => $this->generateUrl ( 'browse_entity', $args ) 
 		);
 		
 		return $buttons;
 	}
-	public function __construct($read_only = false) {
-		$this->is_readonly = $read_only;
-	}
+	
 	/**
 	 * Render the Edit page of the post given by $id
 	 *
@@ -41,23 +62,23 @@ class EntityEditController extends GenericController {
 		if ($id < 0) {
 			// in case of a new post
 			$class = "Mynix\DemoBundle\Entity\\" . $entity;
-			$post = new $class ();
+			$item = new $class ();
 		} else {
 			// in case of an existent post
-			$post = $this->getPost ( $id );
+			$item = $this->getPost ( $id );
 		}
 		
 		// check if the current user has edit permission
-		$this->denyAccessUnlessGranted ( $acl, $post );
+		$this->denyAccessUnlessGranted ( $acl, $item );
 		
 		$annotation = $this->getEntityAnnotations ( 'Mynix\DemoBundle\Annotation\EntityAnnotation' );
 		
-		$pk = $annotation ? call_user_func ( array (
-				$post,
+		$callback = array (
+				$item,
 				'get' . ucfirst ( $annotation->pk ) 
-		) ) : '';
+		);
 		
-		$form = $this->getPostForm ( $post );
+		$form = $this->getPostForm ( $item );
 		
 		// no error => submit the form
 		$form->handleRequest ( $request );
@@ -72,8 +93,10 @@ class EntityEditController extends GenericController {
 			$this->addFlash ( 'notice', $translator->trans ( 'post_saved' ) );
 			
 			$em = $this->get ( 'doctrine.orm.entity_manager' );
-			$em->persist ( $post );
+			$em->persist ( $item );
 			$em->flush ();
+			
+			$pk = $annotation && is_callable ( $callback ) ? call_user_func ( $callback ) : '';
 			
 			return $this->redirectToRoute ( 'edit_entity', array (
 					'id' => $pk,
@@ -81,6 +104,8 @@ class EntityEditController extends GenericController {
 					'success' => 'saved' 
 			) );
 		}
+		
+		$pk = $annotation && is_callable ( $callback ) ? call_user_func ( $callback ) : '';
 		
 		// output the edit form
 		$templating = $this->get ( 'templating' );

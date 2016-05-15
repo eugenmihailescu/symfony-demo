@@ -15,18 +15,6 @@ class AppExtension extends \Twig_Extension {
 	
 	/**
 	 *
-	 * @var string
-	 */
-	private $themes_search_pattern;
-	
-	/**
-	 *
-	 * @var string
-	 */
-	private $themes_root;
-	
-	/**
-	 *
 	 * @var unknown
 	 */
 	private $theme_css;
@@ -47,18 +35,12 @@ class AppExtension extends \Twig_Extension {
 	 * Constructor
 	 *
 	 * @param array $locales        	
-	 * @param string $themes_search_pattern        	
-	 * @param string $themes_root        	
 	 * @param string $theme_css
 	 *        	@oaram string $default_theme
 	 * @param RequestStack $request_stack        	
 	 */
-	public function __construct($locales, $themes_search_pattern, $themes_root, $theme_css, $default_theme, RequestStack $request_stack) {
+	public function __construct($locales, $theme_css, $default_theme, RequestStack $request_stack) {
 		$this->locales = $locales;
-		
-		$this->themes_search_pattern = $themes_search_pattern;
-		
-		$this->themes_root = $themes_root;
 		
 		$this->theme_css = $theme_css;
 		

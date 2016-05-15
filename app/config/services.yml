@@ -14,8 +14,6 @@ services:
     class: Mynix\DemoBundle\Twig\AppExtension
     arguments:
     - '%app_locales%'
-    - '%themes_search_pattern%'
-    - '%themes_root%'
     - '%theme_css%'
     - '%default_theme%'
     - '@request_stack'
