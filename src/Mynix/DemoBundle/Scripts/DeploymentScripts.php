@@ -20,11 +20,30 @@ class DeploymentScripts extends \Sensio\Bundle\DistributionBundle\Composer\Scrip
 		
 		$consoleDir = static::getConsoleDir ( $event, 'create demo database' );
 		
+		static::executeCommand ( $event, $consoleDir, 'assetic:dump --env=dev', $options ['process-timeout'] );
+		
+		static::executeCommand ( $event, $consoleDir, 'assetic:dump --env=prod', $options ['process-timeout'] );
+		
 		static::executeCommand ( $event, $consoleDir, 'doctrine:database:create', $options ['process-timeout'] );
 		
 		if (is_file ( $datapath ) && filesize ( $datapath ))
 			$event->getIO ()->write ( sprintf ( ' [SKIP] Database schema already exists at %s', $options ['mynix-demo-datapath'] ) );
 		else
 			static::executeCommand ( $event, $consoleDir, 'doctrine:schema:create', $options ['process-timeout'] );
+	}
+	
+	/**
+	 * Dump assets
+	 * 
+	 * @param Event $event        	
+	 */
+	public function dumpAssets(Event $event) {
+		$options = static::getOptions ( $event );
+		
+		$consoleDir = static::getConsoleDir ( $event, 'dump assets' );
+		
+		static::executeCommand ( $event, $consoleDir, 'assetic:dump --env=dev', $options ['process-timeout'] );
+		
+		static::executeCommand ( $event, $consoleDir, 'assetic:dump --env=prod', $options ['process-timeout'] );
 	}
 }

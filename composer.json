@@ -42,7 +42,8 @@
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::createDemoDatabase"
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::createDemoDatabase",
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::dumpAssets"
 		],
 		"post-update-cmd" : [
 			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -51,7 +52,8 @@
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
 			"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::createDemoDatabase"
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::createDemoDatabase",
+			"Mynix\\DemoBundle\\Scripts\\DeploymentScripts::dumpAssets"
 		]
 	},
 	"config" : {
