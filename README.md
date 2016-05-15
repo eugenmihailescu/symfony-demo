@@ -14,6 +14,8 @@ It should be regarded as an working frame which allowed me to test|implement var
 - [Translation](http://symfony.com/doc/current/book/translation.html)
 - [Services](http://symfony.com/doc/current/book/service_container.html) 
 
+A sandbox instance can be found here: [http://symfony.mynixworld.info](http://symfony.mynixworld.info).
+
 ### Requirements
 
 This application is built on top of Symfony Framework 3.0 so many of its requirements derives from it:
