@@ -98,5 +98,3 @@ pageNotFound:
     path: ''
   requirements:
     path: .*
-bootswatch_css:
-  path: '%kernel.root_dir%/../web/vendor/thomaspark/bootswatch/'

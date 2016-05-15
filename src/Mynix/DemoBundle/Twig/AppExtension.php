@@ -143,7 +143,25 @@ class AppExtension extends \Twig_Extension {
 	 * @return array
 	 */
 	public function getInstalledThemes() {
-		return array_map ( 'basename', array_map ( 'dirname', glob ( $this->themes_search_pattern ) ) );
+		$bootswatch_themes = array (
+				'cerulean',
+				'cosmo',
+				'cyborg',
+				'darkly',
+				'flatly',
+				'journal',
+				'lumen',
+				'paper',
+				'readable',
+				'sandstone',
+				'simplex',
+				'slate',
+				'spacelab',
+				'superhero',
+				'united',
+				'yeti' 
+		);
+		return $bootswatch_themes;
 	}
 	
 	/**
@@ -152,7 +170,7 @@ class AppExtension extends \Twig_Extension {
 	 * @return string
 	 */
 	public function getThemeCSS() {
-		return $this->themes_root . '/' . $this->getCurrentTheme () . '/' . $this->theme_css;
+		return sprintf ( 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/%s/bootstrap.min.css', $this->getCurrentTheme () );
 	}
 	
 	/**
