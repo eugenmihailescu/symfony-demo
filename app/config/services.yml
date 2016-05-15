@@ -8,6 +8,7 @@ services:
     arguments:
     - '@twig'
     - '%kernel.debug%'
+    - '@request_stack'
   app.twig.app_extension:
     public: false
     class: Mynix\DemoBundle\Twig\AppExtension

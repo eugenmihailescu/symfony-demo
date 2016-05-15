@@ -1,6 +1,6 @@
 {% include 'MynixDemoBundle::pagenav_limit.html.twig' %}
 {# some `data` are zero-indexed, some aren't #}
-{% set nzero_indexed=(data[0]|keys)[0]>0?1:0 %}
+{% set nzero_indexed=data is not empty and key is not empty and (data[0]|keys)[0]>0?1:0 %}
 <div class="panel panel-default">
   <div class="panel-body">
 	<table class="table table-striped table-hover">

@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\User\User;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Mynix\DemoBundle\Controller\ExceptionController;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class EntityVoter extends Voter {
 	private $twig;
@@ -37,7 +39,7 @@ class EntityVoter extends Voter {
 		
 		return $reader->getClassAnnotation ( $reflectionEntity, $annotation_name );
 	}
-	public function __construct(\Twig_Environment $twig, $debug) {
+	public function __construct(\Twig_Environment $twig, $debug, RequestStack $request) {
 		$this->twig = $twig;
 		$this->debug = $debug;
 		
@@ -61,7 +63,8 @@ class EntityVoter extends Voter {
 		try {
 			$annotations = $this->getEntityAnnotations ( $this->entity, 'Mynix\DemoBundle\Annotation\EntityAnnotation' );
 		} catch ( \Exception $e ) {
-			throw new ExceptionController ( $this->twig, $this->debug );
+			$ec = new ExceptionController ( $this->twig, $this->debug );
+			return $ec->showAction ( $request->request, $e );
 		}
 		if ($annotations) {
 			$this->can_edit = $annotations->can_edit;
