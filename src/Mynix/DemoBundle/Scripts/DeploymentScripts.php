@@ -4,7 +4,7 @@ namespace Mynix\DemoBundle\Scripts;
 
 use Composer\Script\Event;
 
-class DeploymentScripts extends Sensio\Bundle\DistributionBundle\Composer\ScriptHandler {
+class DeploymentScripts extends \Sensio\Bundle\DistributionBundle\Composer\ScriptHandler {
 	
 	/**
 	 * Creates the SQLite demo database
